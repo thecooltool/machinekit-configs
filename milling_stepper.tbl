@@ -1,0 +1,11 @@
+T1 P1 Z0.511 D0.125 ;1/8 end mill 
+T2 P2 Z0.1 D0.0625 ;1/16 end mill 
+T3 P3 Z1.273 D0.201 ;#7 tap drill 
+T30 P30 Z4 D0.5 ;end mill 0.5 mm 
+T35 P35 Z5 D0.5 ;end mill 0.6 mmAdded 20120611 
+T40 P40 Z6 D0.8 ;end mill 0.8 mm 
+T45 P45 Z8 D1.0 ;end mill 1.0 mm 
+T50 P50 Z9 D1.2 ;end mill 1.2 mm 
+T55 P55 Z10 D1.6 ;end mill 1.6 mm 
+T60 P60 Z10 D2.0 ;end mill 2.0 mm 
+T65 P65 Z10 D3.0 ;end mill 3.0 mm 

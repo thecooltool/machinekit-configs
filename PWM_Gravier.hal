@@ -1,0 +1,11 @@
+loadrt pwmgen output_type=0
+addf pwmgen.update servo-thread
+addf pwmgen.make-pulses base-thread
+net spindle-speed-cmd motion.spindle-speed-out => pwmgen.0.value
+net spindle-on motion.spindle-on => pwmgen.0.enable
+net spindle-pwm pwmgen.0.pwm => parport.0.pin-01-out
+setp pwmgen.0.scale 15000
+setp pwmgen.0.pwm-freq 1000
+setp pwmgen.0.dither-pwm true
+
+

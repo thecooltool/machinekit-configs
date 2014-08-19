@@ -1,0 +1,3 @@
+net Yhomelim parport.0.pin-12-in-not debounce.0.1.in
+net Yhomeok_sig debounce.0.1.out axis.1.home-sw-in
+setp debounce.0.delay 50
