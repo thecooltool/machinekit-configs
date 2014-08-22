@@ -1,0 +1,32 @@
+# ################
+# C [5] Axis
+# ################
+
+# axis enable chain
+newsig emcmot.05.enable bit
+
+net emcmot.05.enable <= axis.5.amp-enable-out
+net emcmot.05.enable => [PRUCONF](DRIVER).stepgen.05.enable
+
+# position command and feedback
+net emcmot.05.pos-cmd <= axis.5.motor-pos-cmd
+net emcmot.05.pos-cmd => [PRUCONF](DRIVER).stepgen.05.position-cmd
+
+net motor.05.pos-fb <= [PRUCONF](DRIVER).stepgen.05.position-fb
+net motor.05.pos-fb => axis.5.motor-pos-fb
+
+# timing parameters
+setp [PRUCONF](DRIVER).stepgen.05.dirsetup        [AXIS_5]DIRSETUP
+setp [PRUCONF](DRIVER).stepgen.05.dirhold         [AXIS_5]DIRHOLD
+
+setp [PRUCONF](DRIVER).stepgen.05.steplen         [AXIS_5]STEPLEN
+setp [PRUCONF](DRIVER).stepgen.05.stepspace       [AXIS_5]STEPSPACE
+
+setp [PRUCONF](DRIVER).stepgen.05.position-scale  [AXIS_5]SCALE
+
+setp [PRUCONF](DRIVER).stepgen.05.maxvel          [AXIS_5]STEPGEN_MAX_VEL
+setp [PRUCONF](DRIVER).stepgen.05.maxaccel        [AXIS_5]STEPGEN_MAX_ACC
+
+#net CStep => [PRUCONF](DRIVER).stepgen.05.steppin
+#net CDir => [PRUCONF](DRIVER).stepgen.05.dirpin
+

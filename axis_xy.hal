@@ -1,0 +1,66 @@
+# ################
+# X [0] Axis
+# ################
+
+# axis enable chain
+newsig emcmot.00.enable bit
+
+net emcmot.00.enable <= axis.0.amp-enable-out
+net emcmot.00.enable => [PRUCONF](DRIVER).stepgen.00.enable
+net emcmot.00.enable => or2.axis-enable.in1
+net emcmot.00.enable => or2.status-led.in1
+
+# position command and feedback
+net emcmot.00.pos-cmd <= axis.0.motor-pos-cmd
+net emcmot.00.pos-cmd => [PRUCONF](DRIVER).stepgen.00.position-cmd
+
+net motor.00.pos-fb <= [PRUCONF](DRIVER).stepgen.00.position-fb
+net motor.00.pos-fb => axis.0.motor-pos-fb
+
+# timing parameters
+setp [PRUCONF](DRIVER).stepgen.00.dirsetup        [AXIS_0]DIRSETUP
+setp [PRUCONF](DRIVER).stepgen.00.dirhold         [AXIS_0]DIRHOLD
+
+setp [PRUCONF](DRIVER).stepgen.00.steplen         [AXIS_0]STEPLEN
+setp [PRUCONF](DRIVER).stepgen.00.stepspace       [AXIS_0]STEPSPACE
+
+setp [PRUCONF](DRIVER).stepgen.00.position-scale  [AXIS_0]SCALE
+
+setp [PRUCONF](DRIVER).stepgen.00.maxvel          [AXIS_0]STEPGEN_MAX_VEL
+setp [PRUCONF](DRIVER).stepgen.00.maxaccel        [AXIS_0]STEPGEN_MAX_ACC
+
+#net XStep => [PRUCONF](DRIVER).stepgen.00.steppin
+#net XDir => [PRUCONF](DRIVER).stepgen.00.dirpin
+
+
+# ################
+# Y [1] Axis
+# ################
+
+# axis enable chain
+newsig emcmot.01.enable bit
+
+net emcmot.01.enable <= axis.1.amp-enable-out
+net emcmot.01.enable => [PRUCONF](DRIVER).stepgen.01.enable
+
+# position command and feedback
+net emcmot.01.pos-cmd <= axis.1.motor-pos-cmd
+net emcmot.01.pos-cmd => [PRUCONF](DRIVER).stepgen.01.position-cmd
+
+net motor.01.pos-fb <= [PRUCONF](DRIVER).stepgen.01.position-fb
+net motor.01.pos-fb => axis.1.motor-pos-fb
+
+# timing parameters
+setp [PRUCONF](DRIVER).stepgen.01.dirsetup        [AXIS_1]DIRSETUP
+setp [PRUCONF](DRIVER).stepgen.01.dirhold         [AXIS_1]DIRHOLD
+
+setp [PRUCONF](DRIVER).stepgen.01.steplen         [AXIS_1]STEPLEN
+setp [PRUCONF](DRIVER).stepgen.01.stepspace       [AXIS_1]STEPSPACE
+
+setp [PRUCONF](DRIVER).stepgen.01.position-scale  [AXIS_1]SCALE
+
+setp [PRUCONF](DRIVER).stepgen.01.maxvel          [AXIS_1]STEPGEN_MAX_VEL
+setp [PRUCONF](DRIVER).stepgen.01.maxaccel        [AXIS_1]STEPGEN_MAX_ACC
+
+#net YStep => [PRUCONF](DRIVER).stepgen.01.steppin
+#net YDir => [PRUCONF](DRIVER).stepgen.01.dirpin

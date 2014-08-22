@@ -1,0 +1,12 @@
+# ################
+# X Limit Switches
+# ################
+net XHome           => debounce.0.0.in
+net XHome.debounced <= debounce.0.0.out
+net XHome.debounced => axis.0.home-sw-in
+net XMin            => debounce.0.1.in
+net XMin.debounced  <= debounce.0.1.out
+net XMin.debounced  => axis.0.neg-lim-sw-in
+net XMax            => debounce.0.2.in
+net XMax.debounced  <= debounce.0.2.out
+net XMax.debounced  => axis.0.pos-lim-sw-in

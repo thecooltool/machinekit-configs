@@ -1,0 +1,6 @@
+# ################
+# B Limit Switches
+# ################
+net BHome           => debounce.0.12.in
+net BHome.debounced <= debounce.0.12.out
+net BHome.debounced => axis.4.home-sw-in

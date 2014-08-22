@@ -1,0 +1,12 @@
+# ################
+# Y Limit Switches
+# ################
+net YHome           => debounce.0.3.in
+net YHome.debounced <= debounce.0.3.out
+net YHome.debounced => axis.1.home-sw-in
+net YMin            => debounce.0.4.in
+net YMin.debounced  <= debounce.0.4.out
+net YMin.debounced  => axis.1.neg-lim-sw-in
+net YMax            => debounce.0.5.in
+net YMax.debounced  <= debounce.0.5.out
+net YMax.debounced  => axis.1.pos-lim-sw-in

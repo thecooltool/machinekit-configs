@@ -1,0 +1,12 @@
+# ################
+# Z Limit Switches
+# ################
+net ZHome           => debounce.0.6.in
+net ZHome.debounced <= debounce.0.6.out
+net ZHome.debounced => axis.2.home-sw-in
+net ZMin            => debounce.0.7.in
+net ZMin.debounced  <= debounce.0.7.out
+net ZMin.debounced  => axis.2.neg-lim-sw-in
+net ZMax            => debounce.0.8.in
+net ZMax.debounced  <= debounce.0.8.out
+net ZMax.debounced  => axis.2.pos-lim-sw-in

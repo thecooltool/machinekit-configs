@@ -1,0 +1,12 @@
+# ################
+# A Limit Switches
+# ################
+net AHome           => debounce.0.9.in
+net AHome.debounced <= debounce.0.9.out
+net AHome.debounced => axis.3.home-sw-in
+net AMin            => debounce.0.10.in
+net AMin.debounced  <= debounce.0.10.out
+net AMin.debounced  => axis.3.neg-lim-sw-in
+net AMax            => debounce.0.11.in
+net AMax.debounced  <= debounce.0.11.out
+net AMax.debounced  => axis.3.pos-lim-sw-in

@@ -1,0 +1,2 @@
+# use the XHome as YHome
+net XHome.debounced => axis.1.home-sw-in
