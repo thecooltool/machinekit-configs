@@ -1,6 +1,0 @@
-loadrt debounce cfg=8
-addf debounce.0 base-thread
-net Xhomelim parport.0.pin-13-in-not debounce.0.0.in
-net Xhomeok_sig debounce.0.0.out axis.0.home-sw-in
-setp debounce.0.delay 50
-

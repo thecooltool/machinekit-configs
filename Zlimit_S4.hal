@@ -1,4 +1,0 @@
-#net Zhomelim parport.0.pin-12-in-not axis.2.home-sw-in
-net Zhomelim parport.0.pin-12-in-not debounce.0.2.in
-net Zhomeok_sig debounce.0.2.out axis.2.home-sw-in
-setp debounce.0.delay 50
