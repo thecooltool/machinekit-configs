@@ -4,6 +4,7 @@
 newsig spindle-on bit
 newsig spindle-speed float
 newsig spindle-speedl float
+newsig spindle-speeds float
 
 net spindle-on <= motion.spindle-on
 net spindle-on => charge-pump.enable
@@ -14,8 +15,11 @@ net Spindle_Dir <= motion.spindle-reverse
 setp hal_pru_generic.pwmgen.00.out.00.enable    1
 setp hal_pru_generic.pwmgen.00.out.00.value     0.0
 
-net spindle-speed  => limit1.spindle-speed.in
+net spindle-speeds  => limit1.spindle-speed.in
 net spindle-speedl <= limit1.spindle-speed.out
+
+net spindle-speeds <= scale.spindle-speed.out
+net spindle-speed => scale.spindle-speed.in
 
 net spindle-speed <= motion.spindle-speed-out
 net spindle-speedl => hal_pru_generic.pwmgen.00.out.00.value
@@ -23,3 +27,6 @@ net spindle-speedl => hal_pru_generic.pwmgen.00.out.00.value
 # limit to a range from 0 to 1
 setp limit1.spindle-speed.min 0
 setp limit1.spindle-speed.max 1
+
+# set spindle-speed scale
+setp scale.spindle-speed.gain 0.05

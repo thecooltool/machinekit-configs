@@ -52,6 +52,7 @@ loadrt hal_bb_gpio output_pins=126,223,226,230 input_pins=107,110,114,117,118,11
 loadrt [PRUCONF](DRIVER) prucode=[PRUCONF](PRUBIN) [PRUCONF](CONFIG)
 loadrt limit1 names=limit1.spindle-speed
 loadrt or2 names=or2.axis-enable,or2.status-led
+loadrt scale names=scale.spindle-speed
 loadrt debounce cfg=13
 loadrt charge_pump
 
@@ -63,6 +64,7 @@ addf bb_gpio.read                         servo-thread
 addf debounce.0                           servo-thread
 addf motion-command-handler               servo-thread
 addf motion-controller                    servo-thread
+addf scale.spindle-speed                  servo-thread
 addf limit1.spindle-speed                 servo-thread
 addf or2.axis-enable                      servo-thread
 addf or2.status-led                       servo-thread
