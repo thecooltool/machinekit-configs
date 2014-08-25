@@ -1,2 +1,4 @@
-# The Cool Tool Machinekit configurations
-Contains the Machinekit configurations for all The Cool Tool machines.
+machinekit-configs
+==================
+
+MachineKit configuration files for The Cool Tool machines
