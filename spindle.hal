@@ -29,4 +29,4 @@ setp limit1.spindle-speed.min 0
 setp limit1.spindle-speed.max 1
 
 # set spindle-speed scale
-setp scale.spindle-speed.gain 0.05
+setp scale.spindle-speed.gain [SPINDLE]DAC_SCALE
