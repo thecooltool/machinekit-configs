@@ -8,15 +8,17 @@ newsig spindle-speeds float
 
 net spindle-on <= motion.spindle-on
 net spindle-on => charge-pump.enable
+net spindle-on => [PRUCONF](DRIVER).stepgen.05.enable
 net Relay <= charge-pump.out
 net Spindle_Dir <= motion.spindle-reverse
 
 #   Initialize the stepgen for the spindle
-setp [PRUCONF](DRIVER).stepgen.05.position-scale  1
+setp position-scale  1
 setp [PRUCONF](DRIVER).stepgen.05.maxvel          [SPINDLE]STEPGEN_MAX_VEL
 setp [PRUCONF](DRIVER).stepgen.05.maxaccel        [SPINDLE]STEPGEN_MAX_ACC
 setp [PRUCONF](DRIVER).stepgen.05.steplen         [SPINDLE]STEPLEN
 setp [PRUCONF](DRIVER).stepgen.05.stepspace       [SPINDLE]STEPSPACE
+setp [PRUCONF](DRIVER).stepgen.05.control-type    1
 
 net spindle-speeds  => limit1.spindle-speed.in
 net spindle-speedl <= limit1.spindle-speed.out
