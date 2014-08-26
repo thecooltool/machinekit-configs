@@ -30,6 +30,3 @@ setp limit1.spindle-speed.max 1
 
 # set spindle-speed scale
 setp scale.spindle-speed.gain [SPINDLE]SCALE
-
-#sets Spindle    55  # P8.13
-setp [PRUCONF](DRIVER).pwmgen.00.out.00.pin 55

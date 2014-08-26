@@ -62,7 +62,7 @@ setp [PRUCONF](DRIVER).stepgen.05.steppin 101
 #sets CDir       99  # P8.08
 setp [PRUCONF](DRIVER).stepgen.05.dirpin 99
 #sets Spindle    55  # P8.13
-setp hal_pru_generic.pwmgen.00.out.00.pin 55
+setp [PRUCONF](DRIVER).pwmgen.00.out.00.pin 55
 
 # ##################################################
 # Standard I/O - EStop, Enables, Limit Switches, Etc
