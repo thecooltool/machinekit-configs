@@ -14,6 +14,7 @@ net Spindle_Dir <= motion.spindle-reverse
 #net Spindle => hal_pru_generic.pwmgen.00.out.00.pin
 setp hal_pru_generic.pwmgen.00.out.00.enable    1
 setp hal_pru_generic.pwmgen.00.out.00.value     0.0
+setp hal_pru_generic.pwmgen.00.pwm_period [SPINDLE]PWM_PERIOD
 
 net spindle-speeds  => limit1.spindle-speed.in
 net spindle-speedl <= limit1.spindle-speed.out
