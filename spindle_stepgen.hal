@@ -1,0 +1,40 @@
+# ################
+# Spindle
+# ################
+newsig spindle-on bit
+newsig spindle-speed float
+newsig spindle-speedl float
+newsig spindle-speeds float
+
+net spindle-on <= motion.spindle-on
+net spindle-on => charge-pump.enable
+net spindle-on => [PRUCONF](DRIVER).stepgen.06.enable
+net Relay <= charge-pump.out
+net Spindle_Dir <= motion.spindle-reverse
+
+#   Initialize the stepgen for the spindle
+setp [PRUCONF](DRIVER).stepgen.06.position-scale  1
+setp [PRUCONF](DRIVER).stepgen.06.maxvel          [SPINDLE]STEPGEN_MAX_VEL
+setp [PRUCONF](DRIVER).stepgen.06.maxaccel        [SPINDLE]STEPGEN_MAX_ACC
+setp [PRUCONF](DRIVER).stepgen.06.steplen         [SPINDLE]STEPLEN
+setp [PRUCONF](DRIVER).stepgen.06.stepspace       [SPINDLE]STEPSPACE
+setp [PRUCONF](DRIVER).stepgen.06.control-type    1
+
+net spindle-speeds  => limit1.spindle-speed.in
+net spindle-speedl <= limit1.spindle-speed.out
+
+net spindle-speeds <= scale.spindle-speed.out
+net spindle-speed => scale.spindle-speed.in
+
+net spindle-speed <= motion.spindle-speed-out
+net spindle-speedl => [PRUCONF](DRIVER).stepgen.06.velocity-cmd
+
+# limit to a range from 0 to 1
+setp limit1.spindle-speed.min 0
+setp limit1.spindle-speed.max [SPINDLE]STEPGEN_MAX_VEL
+
+# set spindle-speed scale
+setp scale.spindle-speed.gain [SPINDLE]SCALE
+
+#sets Spindle    55  # P8.13
+setp [PRUCONF](DRIVER).stepgen.05.steppin 55

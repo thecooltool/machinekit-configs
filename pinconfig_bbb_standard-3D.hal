@@ -61,8 +61,6 @@ setp [PRUCONF](DRIVER).stepgen.04.dirpin 149
 setp [PRUCONF](DRIVER).stepgen.05.steppin 62
 #sets CDir       99  # P8.08
 setp [PRUCONF](DRIVER).stepgen.05.dirpin 39
-#sets Spindle    55  # P8.13
-setp [PRUCONF](DRIVER).pwmgen.00.out.00.pin 55
 
 # ##################################################
 # Standard I/O - EStop, Enables, Limit Switches, Etc
