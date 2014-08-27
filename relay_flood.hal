@@ -1,0 +1,8 @@
+# ################
+# Relay
+# ################
+newsig relay-on bit
+
+net relay-on <= motion.flood-on
+net relay-on => charge-pump.enable
+net Relay <= charge-pump.out

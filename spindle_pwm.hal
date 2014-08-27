@@ -1,14 +1,10 @@
 # ################
 # Spindle
 # ################
-newsig spindle-on bit
 newsig spindle-speed float
 newsig spindle-speedl float
 newsig spindle-speeds float
 
-net spindle-on <= motion.spindle-on
-net spindle-on => charge-pump.enable
-net Relay <= charge-pump.out
 net Spindle_Dir <= motion.spindle-reverse
 
 setp [PRUCONF](DRIVER).pwmgen.00.out.00.enable    1

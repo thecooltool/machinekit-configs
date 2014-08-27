@@ -7,9 +7,7 @@ newsig spindle-speedl float
 newsig spindle-speeds float
 
 net spindle-on <= motion.spindle-on
-net spindle-on => charge-pump.enable
 net spindle-on => [PRUCONF](DRIVER).stepgen.06.enable
-net Relay <= charge-pump.out
 net Spindle_Dir <= motion.spindle-reverse
 
 #   Initialize the stepgen for the spindle
