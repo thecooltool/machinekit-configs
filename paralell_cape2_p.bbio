@@ -1,0 +1,38 @@
+# File generated with BB pin configurator
+# title: Paralell Cape CNC
+overlay cape-universal
+P8_7 in #11
+P8_8 default
+P8_9 default
+P8_10 default
+P8_11 low #2
+P8_12 low #3
+P8_13 low #1
+P8_14 default
+P8_15 low #4
+P8_16 low #5
+P8_17 default
+P8_18 default
+P8_19 in #12
+P8_26 default
+P9_11 low #17
+P9_12 default
+P9_13 low #7
+P9_14 default
+P9_15 default
+P9_16 default
+P9_17 in #13
+P9_18 in #15
+P9_21 low #8
+P9_22 low #9
+P9_23 default
+P9_24 default
+P9_25 low #6
+P9_26 low #14
+P9_27 default
+P9_28 default
+P9_29 default
+P9_30 default
+P9_31 default
+P9_41 in #10
+P9_42 low #16
