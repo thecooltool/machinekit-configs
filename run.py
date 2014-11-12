@@ -4,6 +4,7 @@ import sys
 import os
 import subprocess
 import importlib
+import argparse
 from time import *
 
 
@@ -40,6 +41,12 @@ def rip_environment(path=None, force=False):
 
     sys.path.append(os.environ['PYTHONPATH'])
 
+parser = argparse.ArgumentParser(description='starts TheCoolTool configs')
+parser.add_argument('config', nargs=1, help='path to config file')
+
+args = parser.parse_args()
+
+configName = args.config[0]
 
 rip_environment()
 launcher = importlib.import_module('machinekit.launcher')
@@ -55,8 +62,8 @@ try:
     #launcher.install_comp('gantry.comp')
     #launcher.install_comp('led_dim.comp')
     #launcher.install_comp('thermistor_check.comp')
-    launcher.start_process("configserver")
-    launcher.start_process('linuxcnc Uni-fraes-4_2.ini')
+    launcher.start_process("configserver ../Machineface ../Cetus/")
+    launcher.start_process('linuxcnc ' + configName)
 except subprocess.CalledProcessError:
     launcher.end_session()
     sys.exit(1)
