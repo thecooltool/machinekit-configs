@@ -37,32 +37,32 @@ setp                   bb_gpio.p9.in-41.invert TRUE
 net Status_LED      => bb_gpio.p8.out-26
 
 # HAL pins
-#sets XStep      76  # P8.12
-setp [PRUCONF](DRIVER).stepgen.00.steppin 76
-#sets XDir       77  # P8.11
-setp [PRUCONF](DRIVER).stepgen.00.dirpin 77
-#sets YStep      78  # P8.16
-setp [PRUCONF](DRIVER).stepgen.01.steppin 78
-#sets YDir       79  # P8.15
-setp [PRUCONF](DRIVER).stepgen.01.dirpin 79
-#sets ZStep      63  # P9.13
-setp [PRUCONF](DRIVER).stepgen.02.steppin 63
-#sets ZDir       149 # P9.25
-setp [PRUCONF](DRIVER).stepgen.02.dirpin 149
-#sets AStep      34  # P9.22
-setp [PRUCONF](DRIVER).stepgen.03.steppin 34
-#sets ADir       35  # P9.21
-setp [PRUCONF](DRIVER).stepgen.03.dirpin 35
-#sets BStep      62  # P9.11
-setp [PRUCONF](DRIVER).stepgen.04.steppin 62
-#sets BDir       39  # P9.42
-setp [PRUCONF](DRIVER).stepgen.04.dirpin 39
-#sets CStep      101 # P8.09
-setp [PRUCONF](DRIVER).stepgen.05.steppin 101
-#sets CDir       99  # P8.08
-setp [PRUCONF](DRIVER).stepgen.05.dirpin 99
-#sets Spindle    55  # P8.13
-setp [PRUCONF](DRIVER).pwmgen.00.out.00.pin 55
+#sets XStep      P8.12
+setp [PRUCONF](DRIVER).stepgen.00.steppin 812
+#sets XDir       P8.11
+setp [PRUCONF](DRIVER).stepgen.00.dirpin 811
+#sets YStep      P8.16
+setp [PRUCONF](DRIVER).stepgen.01.steppin 816
+#sets YDir       P8.15
+setp [PRUCONF](DRIVER).stepgen.01.dirpin 815
+#sets ZStep      P9.13
+setp [PRUCONF](DRIVER).stepgen.02.steppin 913
+#sets ZDir       P9.25
+setp [PRUCONF](DRIVER).stepgen.02.dirpin 925
+#sets AStep      P9.22
+setp [PRUCONF](DRIVER).stepgen.03.steppin 922
+#sets ADir       P9.21
+setp [PRUCONF](DRIVER).stepgen.03.dirpin 921
+#sets BStep      P9.11
+setp [PRUCONF](DRIVER).stepgen.04.steppin 911
+#sets BDir       P9.42
+setp [PRUCONF](DRIVER).stepgen.04.dirpin 942
+#sets CStep      P8.09
+setp [PRUCONF](DRIVER).stepgen.05.steppin 809
+#sets CDir       P8.08
+setp [PRUCONF](DRIVER).stepgen.05.dirpin 808
+#sets Spindle    P8.13
+setp [PRUCONF](DRIVER).pwmgen.00.out.00.pin 813
 
 # ##################################################
 # Standard I/O - EStop, Enables, Limit Switches, Etc
