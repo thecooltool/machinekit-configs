@@ -48,7 +48,7 @@ loadrt trivkins
 # motion controller, get name and thread periods from ini file
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[TRAJ]AXES
 # load low-level drivers
-loadrt hal_bb_gpio output_pins=126,223,226,230 input_pins=107,110,114,117,118,119,212,214,215,216,217,218,224,241
+loadrt hal_bb_gpio output_pins=826,923,926,930 input_pins=807,810,814,817,818,819,912,914,915,916,917,918,924,941
 loadrt [PRUCONF](DRIVER) prucode=[PRUCONF](PRUBIN) [PRUCONF](CONFIG)
 loadrt limit1 names=limit1.spindle-speed
 loadrt or2 names=or2.axis-enable,or2.status-led
