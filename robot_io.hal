@@ -1,0 +1,6 @@
+# ################
+# I/Os for Robot Interaction
+# ################
+net WP_Ready     <= motion.digital-out-01
+net Vacuum_En    <= motion.digital-out-00
+net WP_Delivered => motion.digital-in-00

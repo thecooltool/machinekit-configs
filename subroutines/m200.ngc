@@ -1,0 +1,3 @@
+o<m200> sub
+M65 P0 ; enable vacuum
+o<m200> end sub

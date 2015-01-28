@@ -1,0 +1,38 @@
+# File generated with BB pin configurator
+# title: Paralell Cape CNC
+overlay cape-universal
+P8_7 in #Home
+P8_8 low #CDir
+P8_9 low #CStep
+P8_10 in #YMin
+P8_11 low #XDir
+P8_12 low #XStep
+P8_13 low #Spindle
+P8_14 in #YMax
+P8_15 low #YDir
+P8_16 low #YStep
+P8_17 in #ZMin
+P8_18 in #ZMax
+P8_19 in #WP_Delivered
+P8_26 low #STATUS_LED
+P9_11 low #BStep
+P9_12 in #AMin
+P9_13 low #ZStep
+P9_14 in #XMin
+P9_15 in #XMax
+P9_16 in #AMax
+P9_17 out #Vacuum_En
+P9_18 out #WP_Ready
+P9_21 low #ADir
+P9_22 low #AStep
+P9_23 low #Spindle_Dir
+P9_24 in #BHome
+P9_25 low #ZDir
+P9_26 low #Relay
+P9_27 default
+P9_28 default
+P9_29 default
+P9_30 low #Axes_Enable
+P9_31 default
+P9_41 in #Estop_Ext
+P9_42 low #BDir

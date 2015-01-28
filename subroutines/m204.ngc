@@ -1,0 +1,3 @@
+o<m204> sub
+M66 P0 L3 Q1000 ; wait 1000s for a rising edge on digital in 0
+o<m204> end sub
