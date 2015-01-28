@@ -12,6 +12,7 @@ setp                   bb_gpio.p8.in-10.invert TRUE
 net YMax            <= bb_gpio.p8.in-14
 setp                   bb_gpio.p8.in-14.invert TRUE
 net WP_Delivered    <= bb_gpio.p8.in-19
+setp                   bb_gpio.p8.in-19.invert TRUE
 net ZMin            <= bb_gpio.p8.in-17
 setp                   bb_gpio.p8.in-17.invert TRUE
 net ZMax            <= bb_gpio.p8.in-18
