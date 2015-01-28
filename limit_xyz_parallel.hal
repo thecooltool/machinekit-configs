@@ -1,0 +1,26 @@
+# ################
+# XYZ Paralell Limit Switches
+# ################
+net Home           => debounce.0.0.in
+net Home.debounced <= debounce.0.0.out
+net Home.debounced => axis.0.home-sw-in
+net Home.debounced => axis.1.home-sw-in
+net Home.debounced => axis.2.home-sw-in
+net XMin            => debounce.0.1.in
+net XMin.debounced  <= debounce.0.1.out
+net XMin.debounced  => axis.0.neg-lim-sw-in
+net XMax            => debounce.0.2.in
+net XMax.debounced  <= debounce.0.2.out
+net XMax.debounced  => axis.0.pos-lim-sw-in
+net YMin            => debounce.0.4.in
+net YMin.debounced  <= debounce.0.4.out
+net YMin.debounced  => axis.1.neg-lim-sw-in
+net YMax            => debounce.0.5.in
+net YMax.debounced  <= debounce.0.5.out
+net YMax.debounced  => axis.1.pos-lim-sw-in
+net ZMin            => debounce.0.7.in
+net ZMin.debounced  <= debounce.0.7.out
+net ZMin.debounced  => axis.2.neg-lim-sw-in
+net ZMax            => debounce.0.8.in
+net ZMax.debounced  <= debounce.0.8.out
+net ZMax.debounced  => axis.2.pos-lim-sw-in
