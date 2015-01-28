@@ -10,7 +10,7 @@ from machinekit import launcher
 
 parser = argparse.ArgumentParser(description='starts TheCoolTool configs')
 parser.add_argument('-nm', '--no_machinetalk', help='disables Machinetalk', action='store_true')
-parser.add_argument('-r', '--robot', help='enables robot interaction', action='store_false')
+parser.add_argument('-r', '--robot', help='enables robot interaction', action='store_true')
 parser.add_argument('config', nargs=1, help='path to config file')
 
 args = parser.parse_args()
