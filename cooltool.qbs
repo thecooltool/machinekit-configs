@@ -16,6 +16,7 @@ Project {
             "base_bbb_robot.hal",
             "limit_x.hal",
             "limit_xyz_parallel.hal",
+            "limit_probe_parallel.hal",
             "limit_y.hal",
             "limit_y-S4.hal",
             "limit_z.hal",

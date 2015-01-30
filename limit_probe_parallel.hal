@@ -1,0 +1,4 @@
+# ################
+# Use the parallel Home switch input also for the probe
+# ################
+net Home.debounced => motion.probe-input
