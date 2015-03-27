@@ -36,31 +36,31 @@ net Status_LED      => bb_gpio.p8.out-26
 
 # HAL pins
 #sets XStep      P8.12
-setp [PRUCONF](DRIVER).stepgen.00.steppin 812
+setp hpg.stepgen.00.steppin 812
 #sets XDir       P8.11
-setp [PRUCONF](DRIVER).stepgen.00.dirpin 811
+setp hpg.stepgen.00.dirpin 811
 #sets YStep      P8.16
-setp [PRUCONF](DRIVER).stepgen.01.steppin 816
+setp hpg.stepgen.01.steppin 816
 #sets YDir       P8.15
-setp [PRUCONF](DRIVER).stepgen.01.dirpin 815
+setp hpg.stepgen.01.dirpin 815
 #sets ZStep      P9.13
-setp [PRUCONF](DRIVER).stepgen.02.steppin 913
+setp hpg.stepgen.02.steppin 913
 #sets ZDir       P9.25
-setp [PRUCONF](DRIVER).stepgen.02.dirpin 925
+setp hpg.stepgen.02.dirpin 925
 #sets AStep      P9.22
-setp [PRUCONF](DRIVER).stepgen.03.steppin 922
+setp hpg.stepgen.03.steppin 922
 #sets ADir       P9.21
-setp [PRUCONF](DRIVER).stepgen.03.dirpin 921
+setp hpg.stepgen.03.dirpin 921
 #sets BStep      P9.11
-setp [PRUCONF](DRIVER).stepgen.04.steppin 911
+setp hpg.stepgen.04.steppin 911
 #sets BDir       P9.42
-setp [PRUCONF](DRIVER).stepgen.04.dirpin 942
+setp hpg.stepgen.04.dirpin 942
 #sets CStep      P8.09
-setp [PRUCONF](DRIVER).stepgen.05.steppin 809
+setp hpg.stepgen.05.steppin 809
 #sets CDir       P8.08
-setp [PRUCONF](DRIVER).stepgen.05.dirpin 808
+setp hpg.stepgen.05.dirpin 808
 #sets Spindle    P8.13
-setp [PRUCONF](DRIVER).pwmgen.00.out.00.pin 813
+setp hpg.pwmgen.00.out.00.pin 813
 
 # ##################################################
 # Standard I/O - EStop, Enables, Limit Switches, Etc

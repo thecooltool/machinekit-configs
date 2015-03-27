@@ -7,9 +7,9 @@ newsig spindle-speeds float
 
 net Spindle_Dir <= motion.spindle-reverse
 
-setp [PRUCONF](DRIVER).pwmgen.00.out.00.enable    1
-setp [PRUCONF](DRIVER).pwmgen.00.out.00.value     0.0
-setp [PRUCONF](DRIVER).pwmgen.00.pwm_period [SPINDLE]PWM_PERIOD
+setp hpg.pwmgen.00.out.00.enable    1
+setp hpg.pwmgen.00.out.00.value     0.0
+setp hpg.pwmgen.00.pwm_period [SPINDLE]PWM_PERIOD
 
 net spindle-speeds  => limit1.spindle-speed.in
 net spindle-speedl <= limit1.spindle-speed.out
@@ -18,7 +18,7 @@ net spindle-speeds <= scale.spindle-speed.out
 net spindle-speed => scale.spindle-speed.in
 
 net spindle-speed <= motion.spindle-speed-out
-net spindle-speedl => [PRUCONF](DRIVER).pwmgen.00.out.00.value
+net spindle-speedl => hpg.pwmgen.00.out.00.value
 
 # limit to a range from 0 to 1
 setp limit1.spindle-speed.min 0

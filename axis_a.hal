@@ -6,26 +6,26 @@
 newsig emcmot.03.enable bit
 
 net emcmot.03.enable <= axis.3.amp-enable-out
-net emcmot.03.enable => [PRUCONF](DRIVER).stepgen.03.enable
+net emcmot.03.enable => hpg.stepgen.03.enable
 
 # position command and feedback
 net emcmot.03.pos-cmd <= axis.3.motor-pos-cmd
-net emcmot.03.pos-cmd => [PRUCONF](DRIVER).stepgen.03.position-cmd
+net emcmot.03.pos-cmd => hpg.stepgen.03.position-cmd
 
-net motor.03.pos-fb <= [PRUCONF](DRIVER).stepgen.03.position-fb
+net motor.03.pos-fb <= hpg.stepgen.03.position-fb
 net motor.03.pos-fb => axis.3.motor-pos-fb
 
 # timing parameters
-setp [PRUCONF](DRIVER).stepgen.03.dirsetup        [AXIS_3]DIRSETUP
-setp [PRUCONF](DRIVER).stepgen.03.dirhold         [AXIS_3]DIRHOLD
+setp hpg.stepgen.03.dirsetup        [AXIS_3]DIRSETUP
+setp hpg.stepgen.03.dirhold         [AXIS_3]DIRHOLD
 
-setp [PRUCONF](DRIVER).stepgen.03.steplen         [AXIS_3]STEPLEN
-setp [PRUCONF](DRIVER).stepgen.03.stepspace       [AXIS_3]STEPSPACE
+setp hpg.stepgen.03.steplen         [AXIS_3]STEPLEN
+setp hpg.stepgen.03.stepspace       [AXIS_3]STEPSPACE
 
-setp [PRUCONF](DRIVER).stepgen.03.position-scale  [AXIS_3]SCALE
+setp hpg.stepgen.03.position-scale  [AXIS_3]SCALE
 
-setp [PRUCONF](DRIVER).stepgen.03.maxvel          [AXIS_3]STEPGEN_MAX_VEL
-setp [PRUCONF](DRIVER).stepgen.03.maxaccel        [AXIS_3]STEPGEN_MAX_ACC
+setp hpg.stepgen.03.maxvel          [AXIS_3]STEPGEN_MAX_VEL
+setp hpg.stepgen.03.maxaccel        [AXIS_3]STEPGEN_MAX_ACC
 
-#net AStep => [PRUCONF](DRIVER).stepgen.03.steppin
-#net ADir => [PRUCONF](DRIVER).stepgen.03.dirpin
+#net AStep => hpg.stepgen.03.steppin
+#net ADir => hpg.stepgen.03.dirpin

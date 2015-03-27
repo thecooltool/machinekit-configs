@@ -50,7 +50,7 @@ loadrt tp
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[TRAJ]AXES num_dio=2 kins=trivkins
 # load low-level drivers
 loadrt hal_bb_gpio output_pins=826,917,918,923,926,930 input_pins=807,810,814,817,818,819,912,914,915,916,924,941
-loadrt [PRUCONF](DRIVER) prucode=$(HAL_RTMOD_DIR)/[PRUCONF](PRUBIN) [PRUCONF](CONFIG)
+loadrt [PRUCONF](DRIVER) prucode=$(HAL_RTMOD_DIR)/[PRUCONF](PRUBIN) [PRUCONF](CONFIG) halname=hpg
 loadrt limit1 names=limit1.spindle-speed
 loadrt or2 names=or2.axis-enable,or2.status-led
 loadrt scale names=scale.spindle-speed
@@ -60,7 +60,7 @@ loadrt charge_pump
 # ################################################
 # THREADS
 # ################################################
-addf [PRUCONF](DRIVER).capture-position   servo-thread
+addf hpg.capture-position                 servo-thread
 addf bb_gpio.read                         servo-thread
 addf debounce.0                           servo-thread
 addf motion-command-handler               servo-thread
@@ -70,6 +70,6 @@ addf limit1.spindle-speed                 servo-thread
 addf or2.axis-enable                      servo-thread
 addf or2.status-led                       servo-thread
 addf charge-pump                          servo-thread
-addf [PRUCONF](DRIVER).update             servo-thread
+addf hpg.update                           servo-thread
 addf bb_gpio.write                        servo-thread
 
