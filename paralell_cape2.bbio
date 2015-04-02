@@ -16,8 +16,8 @@ P8_17 in #ZMin
 P8_18 in #ZMax
 P8_19 in #YHome
 P8_26 high #STATUS_LED
-P8_27 default
-P8_28 low #Buzzer
+P8_27 low #Buzzer
+P8_28 default
 P8_29 default
 P8_30 default
 P8_31 default
