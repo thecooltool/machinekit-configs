@@ -1,0 +1,4 @@
+# ################
+# Buzzer config
+# ################
+net Buzzer <= motion.digital-out-00
