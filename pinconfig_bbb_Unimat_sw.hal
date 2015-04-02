@@ -35,6 +35,8 @@ setp                   bb_gpio.p9.out-30.invert TRUE
 net Estop_Ext       <= bb_gpio.p9.in-17
 setp                   bb_gpio.p9.in-17.invert TRUE
 net Status_LED      => bb_gpio.p8.out-26
+setp                   bb_gpio.p8.out-26.invert TRUE
+net Buzzer          => bb_gpio.p8.out-28
 
 # HAL pins
 #sets XStep      P8.12

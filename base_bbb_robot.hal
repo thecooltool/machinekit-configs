@@ -34,6 +34,7 @@ newsig Relay        bit
 newsig Axes_Enable  bit
 newsig Estop_Ext    bit
 newsig Status_LED   bit
+newsig Buzzer       bit
 newsig WP_Ready     bit
 newsig WP_Delivered bit
 newsig Vacuum_En    bit
@@ -49,7 +50,7 @@ loadrt tp
 # motion controller, get name and thread periods from ini file
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[TRAJ]AXES num_dio=2 kins=trivkins
 # load low-level drivers
-loadrt hal_bb_gpio output_pins=826,917,918,923,926,930 input_pins=807,810,814,817,818,819,912,914,915,916,924,941
+loadrt hal_bb_gpio output_pins=826,828,917,918,923,926,930 input_pins=807,810,814,817,818,819,912,914,915,916,924,941
 loadrt [PRUCONF](DRIVER) prucode=$(HAL_RTMOD_DIR)/[PRUCONF](PRUBIN) [PRUCONF](CONFIG) halname=hpg
 loadrt limit1 names=limit1.spindle-speed
 loadrt or2 names=or2.axis-enable,or2.status-led
