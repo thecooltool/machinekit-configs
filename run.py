@@ -3,9 +3,8 @@
 import sys
 import os
 import subprocess
-import importlib
 import argparse
-from time import *
+from time import sleep
 from machinekit import launcher
 
 parser = argparse.ArgumentParser(description='starts TheCoolTool configs')
@@ -21,6 +20,8 @@ robotEnabled = args.robot
 
 launcher.register_exit_handler()
 #launcher.set_debug_level(5)
+if mtEnabled:
+    launcher.set_machinekit_ini('machinekit.ini')
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 try:
