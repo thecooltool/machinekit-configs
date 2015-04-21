@@ -1,0 +1,4 @@
+# ################
+# Use BHome as probe input
+# ################
+net BHome => motion.probe-input
