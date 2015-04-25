@@ -72,6 +72,7 @@ setp hpg.pwmgen.00.out.00.pin 813
 
 # Create estop signal chain
 # Uncomment to monitor estop input from hardware
+# Estop input is used for probe too -> disable first
 #net Estop_Ext => iocontrol.0.emc-enable-in
 net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
 

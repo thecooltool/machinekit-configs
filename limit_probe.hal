@@ -1,4 +1,4 @@
 # ################
-# Use BHome as probe input
+# Use Estop_Ext as probe input
 # ################
-net BHome => motion.probe-input
+net Estop_Ext => motion.probe-input
