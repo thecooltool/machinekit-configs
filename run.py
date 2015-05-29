@@ -4,6 +4,7 @@ import os
 import subprocess
 import argparse
 import tempfile
+import shutil
 from time import sleep
 from machinekit import launcher
 
@@ -39,15 +40,15 @@ if not os.path.isfile(configName):
     sys.stderr.write('Config file %s does not exist' % configName)
     exit(1)
 
+startupIniName = 'startup.ini'
 sourceIni = open(configName)  # open ini
-(tempIniFd, tempIniName) = tempfile.mkstemp()  # create a temporary file
-tempIni = open(tempIniName, 'w')
-tempIni.write(sourceIni.read())  # copy file contents
+startupIni = open(startupIniName, 'w')
+startupIni.write(sourceIni.read())  # copy file contents
 if mtEnabled:
-    tempIni.write('DISPLAY = mkwrapper\n')
+    startupIni.write('DISPLAY = mkwrapper\n')
 else:
-    tempIni.write('DISPLAY = axis\n')
-tempIni.close()
+    startupIni.write('DISPLAY = axis\n')
+startupIni.close()
 sourceIni.close()
 
 try:
@@ -59,7 +60,7 @@ try:
         launcher.load_bbio_file('paralell_cape2.bbio')
     if mtEnabled:
         cfg = configparser.ConfigParser({'NAME': ''})
-        cfg.read(tempIniName)
+        cfg.read(startupIniName)
         machineName = cfg.get('EMC', 'NAME')
 
         command = 'configserver'
@@ -70,15 +71,12 @@ try:
         if cetus:
             command += ' ~/Cetus'
         launcher.start_process(command)
-    launcher.start_process('linuxcnc ' + tempIniName)
+    launcher.start_process('linuxcnc ' + startupIniName)
     while True:
         launcher.check_processes()
         sleep(1)
 except subprocess.CalledProcessError:
     launcher.end_session()
     exit(1)
-finally:
-    tempIni.close()
-    os.remove(tempIniName)
 
 exit(0)
