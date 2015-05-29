@@ -42,14 +42,16 @@ if not os.path.isfile(configName):
 
 startupIniName = 'startup.ini'
 sourceIni = open(configName)  # open ini
-startupIni = open(startupIniName, 'w')
-startupIni.write(sourceIni.read())  # copy file contents
-if mtEnabled:
-    startupIni.write('DISPLAY = mkwrapper\n')
-else:
-    startupIni.write('DISPLAY = axis\n')
-startupIni.close()
+lines = sourceIni.readlines()
 sourceIni.close()
+if mtEnabled:
+    lines = lines[:-3]  # remove intro graphic
+    lines.append('DISPLAY = mkwrapper\n')
+else:
+    lines.append('DISPLAY = axis\n')
+startupIni = open(startupIniName, 'w')
+startupIni.writelines(lines)  # copy file contents
+startupIni.close()
 
 try:
     launcher.check_installation()
