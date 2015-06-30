@@ -3,8 +3,6 @@ import sys
 import os
 import subprocess
 import argparse
-import tempfile
-import shutil
 from time import sleep
 from machinekit import launcher
 
@@ -32,8 +30,6 @@ cetus = args.cetus
 
 launcher.register_exit_handler()
 #launcher.set_debug_level(5)
-if mtEnabled:
-    launcher.set_machinekit_ini('machinekit.ini')
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 if not os.path.isfile(configName):
