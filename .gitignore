@@ -1,0 +1,7 @@
+*.user
+*.user.*
+~*
+*~
+.directory
+*.pyc
+startup.ini
