@@ -34,5 +34,5 @@ setp limit1.spindle-speed.max [SPINDLE]STEPGEN_MAX_VEL
 # set spindle-speed scale
 setp scale.spindle-speed.gain [SPINDLE]SCALE
 
-#sets Spindle    55  # P8.13
-setp hpg.stepgen.06.steppin 55
+#sets Spindle    # P8.13
+setp hpg.stepgen.06.steppin 813
