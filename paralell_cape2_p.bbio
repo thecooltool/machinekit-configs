@@ -1,7 +1,6 @@
 # File generated with BB pin configurator
 # title: Paralell Cape CNC
-overlay cape-universal
-overlay cape-univ-hdmi
+overlay cape-universalh
 P8_7 in #11
 P8_8 default
 P8_9 default
