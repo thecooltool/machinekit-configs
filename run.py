@@ -52,11 +52,13 @@ startupIni.close()
 try:
     launcher.check_installation()
     launcher.cleanup_session()
-    if robotEnabled:
+
+    if robotEnabled:  # consider the special robot case
         launcher.load_bbio_file('paralell_cape2_robot.bbio')
     else:
         launcher.load_bbio_file('paralell_cape2.bbio')
-    if mtEnabled:
+
+    if mtEnabled:  # load Machinetalk services
         cfg = configparser.ConfigParser({'NAME': ''})
         cfg.read(startupIniName)
         machineName = cfg.get('EMC', 'NAME')
@@ -69,6 +71,10 @@ try:
         if cetus:
             command += ' ~/Cetus'
         launcher.start_process(command)
+
+        if os.path.exists('/dev/video0'):  # automatically start videoserver
+            launcher.start_process('videoserver -i video.ini Webcam1')
+
     launcher.start_process('linuxcnc ' + startupIniName)
     while True:
         launcher.check_processes()
