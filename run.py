@@ -43,8 +43,10 @@ sourceIni.close()
 if mtEnabled:
     lines = lines[:-3]  # remove intro graphic
     lines.append('DISPLAY = mkwrapper\n')
+    lines.append('CYCLE_TIME = 0.100\n')
 else:
     lines.append('DISPLAY = axis\n')
+    lines.append('CYCLE_TIME = 0.200\n')
 startupIni = open(startupIniName, 'w')
 startupIni.writelines(lines)  # copy file contents
 startupIni.close()
