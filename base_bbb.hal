@@ -56,7 +56,7 @@ loadrt limit1 names=limit1.spindle-speed
 loadrt or2 names=or2.axis-enable,or2.status-led
 loadrt scale names=scale.spindle-speed
 newinst debounce debounce.0 pincount=13
-loadrt charge_pump
+newinst charge_pump charge-pump
 
 # ################################################
 # THREADS
