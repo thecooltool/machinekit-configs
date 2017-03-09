@@ -1,6 +1,6 @@
 # File generated with BB pin configurator
 # title: Paralell Cape 3D Printer
-overlay cape-universal
+overlay cape-universalh
 P8_7 low #Machine_Pwr
 P8_8 default
 P8_9 default
