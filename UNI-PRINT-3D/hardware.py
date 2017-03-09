@@ -171,10 +171,10 @@ def setup_hardware(thread):
     hal.Pin('hpg.stepgen.04.dirpin').set(942)   # BDir
 
     # charge pump
-    chargePump = rt.loadrt('charge_pump')
-    hal.addf('charge-pump', thread)
-    hal.Pin('charge-pump.out').link('charge-pump-out')
-    hal.Pin('charge-pump.enable').link('emcmot-0-enable')
+    chargePump = rt.newinst('charge_pump', 'charge-pump')
+    hal.addf(chargePump.name, thread)
+    chargePump.pin('out').link('charge-pump-out')
+    chargePump.pin('enable').link('emcmot-0-enable')
 
     # charge pump tied to machine power
     hal.Pin('bb_gpio.p8.out-19').link('charge-pump-out')
