@@ -49,7 +49,9 @@ startupIni.close()
 try:
     launcher.check_installation()
     launcher.cleanup_session()
+
     launcher.load_bbio_file('paralell_cape3.bbio')
+
     # launcher.install_comp('thermistor_check.icomp')
     cfg = configparser.ConfigParser({'NAME': ''})
     cfg.read(startupIniName)
@@ -59,8 +61,10 @@ try:
         command += ' -n %s' % machineName
     command += ' ~/Machineface'
     launcher.start_process(command)
+
     if os.path.exists('/dev/video0'):  # automatically start videoserver
         launcher.start_process('videoserver -i video.ini Webcam1')
+
     launcher.start_process('linuxcnc %s' % startupIniName)
     while True:
         launcher.check_processes()
