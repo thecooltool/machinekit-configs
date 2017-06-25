@@ -31,7 +31,7 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 launcher.set_machinekit_ini(config.MACHINEKIT_INI)
 
 if not os.path.isfile(configName):
-    sys.stderr.write('Config file %s does not exist\n' % configName)
+    sys.stderr.write('Config file %s does not exist' % configName)
     sys.exit(1)
 
 startupIniName = 'startup.ini'
@@ -40,6 +40,7 @@ lines = sourceIni.readlines()
 sourceIni.close()
 lines.append('NUM_EXTRUDERS = %i\n' % numExtruders)
 lines.append('NUM_FANS = %i\n' % numExtruders)
+lines = [l.replace('uni_print_3d.py', 'sim.py') for l in lines]
 if withAbp:
     lines.append('ABP = 1\n')
 startupIni = open(startupIniName, 'w')
@@ -49,18 +50,16 @@ startupIni.close()
 try:
     launcher.check_installation()
     launcher.cleanup_session()
-    launcher.load_bbio_file('paralell_cape3.bbio')
-    # launcher.install_comp('thermistor_check.icomp')
+    #launcher.load_bbio_file('paralell_cape3.bbio')
+    launcher.install_comp('thermistor_check.icomp')
     cfg = configparser.ConfigParser({'NAME': ''})
     cfg.read(startupIniName)
     machineName = cfg.get('EMC', 'NAME')
     command = 'configserver'
     if machineName is not '':
         command += ' -n %s' % machineName
-    command += ' ~/Machineface'
+    command += ' ~/projects/Machineface'
     launcher.start_process(command)
-    if os.path.exists('/dev/video0'):  # automatically start videoserver
-        launcher.start_process('videoserver -i video.ini Webcam1')
     launcher.start_process('linuxcnc %s' % startupIniName)
     while True:
         launcher.check_processes()
