@@ -28,6 +28,7 @@ setp hpg.stepgen.00.position-scale  [AXIS_0]SCALE
 
 setp hpg.stepgen.00.maxvel          [AXIS_0]STEPGEN_MAX_VEL
 setp hpg.stepgen.00.maxaccel        [AXIS_0]STEPGEN_MAX_ACC
+setp hpg.stepgen.00.minvel          [AXIS_0]STEPGEN_MIN_VEL
 
 #net XStep => hpg.stepgen.00.steppin
 #net XDir => hpg.stepgen.00.dirpin
@@ -61,6 +62,7 @@ setp hpg.stepgen.01.position-scale  [AXIS_1]SCALE
 
 setp hpg.stepgen.01.maxvel          [AXIS_1]STEPGEN_MAX_VEL
 setp hpg.stepgen.01.maxaccel        [AXIS_1]STEPGEN_MAX_ACC
+setp hpg.stepgen.01.minvel          [AXIS_1]STEPGEN_MIN_VEL
 
 #net YStep => hpg.stepgen.01.steppin
 #net YDir => hpg.stepgen.01.dirpin

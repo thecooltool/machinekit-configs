@@ -26,6 +26,7 @@ setp hpg.stepgen.05.position-scale  [AXIS_5]SCALE
 
 setp hpg.stepgen.05.maxvel          [AXIS_5]STEPGEN_MAX_VEL
 setp hpg.stepgen.05.maxaccel        [AXIS_5]STEPGEN_MAX_ACC
+setp hpg.stepgen.05.minvel          [AXIS_5]STEPGEN_MIN_VEL
 
 #net CStep => hpg.stepgen.05.steppin
 #net CDir => hpg.stepgen.05.dirpin
