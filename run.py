@@ -77,7 +77,7 @@ try:
         if os.path.exists('/dev/video0'):  # automatically start videoserver
             launcher.start_process('videoserver -i video.ini Webcam1')
 
-    launcher.start_process('linuxcnc ' + startupIniName)
+    launcher.start_process('machinekit ' + startupIniName)
     while True:
         launcher.check_processes()
         sleep(1)

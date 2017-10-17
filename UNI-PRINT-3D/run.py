@@ -4,7 +4,7 @@ import sys
 import os
 import subprocess
 import argparse
-from time import *
+from time import sleep
 from machinekit import launcher
 from machinekit import config
 
@@ -65,7 +65,7 @@ try:
     if os.path.exists('/dev/video0'):  # automatically start videoserver
         launcher.start_process('videoserver -i video.ini Webcam1')
 
-    launcher.start_process('linuxcnc %s' % startupIniName)
+    launcher.start_process('machinekit %s' % startupIniName)
     while True:
         launcher.check_processes()
         sleep(1)

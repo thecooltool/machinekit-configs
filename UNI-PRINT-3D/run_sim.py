@@ -4,7 +4,7 @@ import sys
 import os
 import subprocess
 import argparse
-from time import *
+from time import sleep
 from machinekit import launcher
 from machinekit import config
 
@@ -60,7 +60,7 @@ try:
         command += ' -n %s' % machineName
     command += ' ~/projects/Machineface'
     launcher.start_process(command)
-    launcher.start_process('linuxcnc %s' % startupIniName)
+    launcher.start_process('machinekit %s' % startupIniName)
     while True:
         launcher.check_processes()
         sleep(1)
