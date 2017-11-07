@@ -16,25 +16,25 @@ P8_18 in #ZMax
 P8_19 in #YHome
 P8_26 high #STATUS_LED
 P8_27 low #Buzzer
-P8_28 default
-P8_29 default
-P8_30 default
-P8_31 default
-P8_32 default
-P8_33 default
-P8_34 default
-P8_35 default
-P8_36 default
-P8_37 default
-P8_38 default
-P8_39 default
-P8_40 default
-P8_41 default
-P8_42 default
-P8_43 default
-P8_44 default
-P8_45 default
-P8_46 default
+#P8_28 default
+#P8_29 default
+#P8_30 default
+#P8_31 default
+#P8_32 default
+#P8_33 default
+#P8_34 default
+#P8_35 default
+#P8_36 default
+#P8_37 default
+#P8_38 default
+#P8_39 default
+#P8_40 default
+#P8_41 default
+#P8_42 default
+#P8_43 default
+#P8_44 default
+#P8_45 default
+#P8_46 default
 P9_11 low #BStep
 P9_12 in #AMin
 P9_13 low #ZStep
@@ -49,12 +49,12 @@ P9_23 low #Spindle_Dir
 P9_24 in #BHome
 P9_25 low #ZDir
 P9_26 low #Relay
-P9_27 default
-P9_28 default
-P9_29 default
+#P9_27 default
+#P9_28 default
+#P9_29 default
 P9_30 low #Axes_Enable
-P9_31 default
+#P9_31 default
 P9_41 in #Estop_Ext
 P9_42 low #BDir
-P9_91 default
-P9_92 default
+#P9_91 default
+#P9_92 default
