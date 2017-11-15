@@ -48,6 +48,13 @@ base.setup_stepper(section='AXIS_2', axisIndex=2, stepgenIndex=3,
 # Extruder, velocity controlled
 base.setup_stepper(section='EXTRUDER_0', stepgenIndex=4, velocitySignal='ve-extrude-vel')
 
+# workaround for joint following error problem
+# feed pos cmd straight back to the feedback channel
+for i in range(3):
+    pin = hal.Pin('axis.%i.motor-pos-fb' % i)
+    pin.unlink()
+    pin.link('emcmot-%i-pos-cmd' % i)
+
 # Extruder Multiplexer
 base.setup_extruder_multiplexer(extruders=(numExtruders + int(withAbp)), thread='servo-thread')
 # Stepper Multiplexer
