@@ -30,5 +30,4 @@ setp hpg.stepgen.02.maxvel          [AXIS_2]STEPGEN_MAX_VEL
 setp hpg.stepgen.02.maxaccel        [AXIS_2]STEPGEN_MAX_ACC
 setp hpg.stepgen.02.minvel          [AXIS_2]STEPGEN_MIN_VEL
 
-#net ZStep => hpg.stepgen.02.steppin
-#net ZDir => hpg.stepgen.02.dirpin
+# Note: steppers connected in pinconfig file

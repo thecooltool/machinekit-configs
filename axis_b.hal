@@ -30,5 +30,4 @@ setp hpg.stepgen.04.maxvel          [AXIS_4]STEPGEN_MAX_VEL
 setp hpg.stepgen.04.maxaccel        [AXIS_4]STEPGEN_MAX_ACC
 setp hpg.stepgen.04.minvel          [AXIS_4]STEPGEN_MIN_VEL
 
-#net BStep => hpg.stepgen.04.steppin
-#net BDir => hpg.stepgen.04.dirpin
+# Note: steppers connected in pinconfig file
