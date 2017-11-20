@@ -14,8 +14,10 @@ net emcmot.00.enable => or2.status-led.in1
 net emcmot.00.pos-cmd <= axis.0.motor-pos-cmd
 net emcmot.00.pos-cmd => hpg.stepgen.00.position-cmd
 
-net motor.00.pos-fb <= hpg.stepgen.00.position-fb
-net motor.00.pos-fb => axis.0.motor-pos-fb
+# Workaround for joint following error
+#net motor.00.pos-fb <= hpg.stepgen.00.position-fb
+#net motor.00.pos-fb => axis.0.motor-pos-fb
+net emcmot.00.pos-cmd => axis.0.motor-pos-fb
 
 # timing parameters
 setp hpg.stepgen.00.dirsetup        [AXIS_0]DIRSETUP
@@ -48,8 +50,10 @@ net emcmot.01.enable => hpg.stepgen.01.enable
 net emcmot.01.pos-cmd <= axis.1.motor-pos-cmd
 net emcmot.01.pos-cmd => hpg.stepgen.01.position-cmd
 
-net motor.01.pos-fb <= hpg.stepgen.01.position-fb
-net motor.01.pos-fb => axis.1.motor-pos-fb
+# Workaround for joint following error
+#net motor.01.pos-fb <= hpg.stepgen.01.position-fb
+#net motor.01.pos-fb => axis.1.motor-pos-fb
+net emcmot.01.pos-cmd => axis.1.motor-pos-fb
 
 # timing parameters
 setp hpg.stepgen.01.dirsetup        [AXIS_1]DIRSETUP

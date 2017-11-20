@@ -12,8 +12,10 @@ net emcmot.04.enable => hpg.stepgen.04.enable
 net emcmot.04.pos-cmd <= axis.4.motor-pos-cmd
 net emcmot.04.pos-cmd => hpg.stepgen.04.position-cmd
 
-net motor.04.pos-fb <= hpg.stepgen.04.position-fb
-net motor.04.pos-fb => axis.4.motor-pos-fb
+# Workaround for joint following error
+#net motor.04.pos-fb <= hpg.stepgen.04.position-fb
+#net motor.04.pos-fb => axis.4.motor-pos-fb
+net emcmot.04.pos-cmd => axis.4.motor-pos-fb
 
 # timing parameters
 setp hpg.stepgen.04.dirsetup        [AXIS_4]DIRSETUP
