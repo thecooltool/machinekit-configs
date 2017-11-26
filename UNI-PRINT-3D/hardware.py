@@ -17,6 +17,7 @@ def hardware_write():
 
 def init_hardware():
     watchList = []
+    i2c_bus_id = 1  # note: was 2 on Jessie/3.8
 
     # load low-level drivers
     rt.loadrt('hal_bb_gpio', output_pins='807,819,826,926', input_pins='941')
@@ -28,7 +29,7 @@ def init_hardware():
     # Python user-mode HAL module to interface with an I2C gpio extender
     hal.loadusr('hal_gpio_mcp23017',
                 name='i2c-gpio',
-                bus_id=2,
+                bus_id=i2c_bus_id,
                 address=32,
                 interval=0.05,
                 delay=2.5,
@@ -40,7 +41,7 @@ def init_hardware():
     # Python user-mode HAL module to interface with an I2C PWM generator
     hal.loadusr('hal_pwm_pca9685',
                 name='i2c-pwm',
-                bus_id=2,
+                bus_id=i2c_bus_id,
                 address=67,
                 interval=0.1,
                 delay=2.6,
@@ -51,7 +52,7 @@ def init_hardware():
     defaultThermistor = 'semitec_103GT_2'
     hal.loadusr('hal_temp_ads7828',
                 name='i2c-temp',
-                bus_id=2,
+                bus_id=i2c_bus_id,
                 address=72,
                 interval=0.05,
                 delay=2.7,
