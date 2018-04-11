@@ -58,7 +58,7 @@ try:
     if robotEnabled:  # consider the special robot case
         launcher.load_bbio_file('paralell_cape2_robot.bbio')
     else:
-        launcher.load_bbio_file('paralell_cape2.bbio')
+        launcher.load_bbio_file('paralell_cape2018.bbio')
 
     if mtEnabled:  # load Machinetalk services
         cfg = configparser.ConfigParser({'NAME': ''})
