@@ -2,3 +2,6 @@
 *~
 .directory
 *.pyc
+/startup.ini
+/stepper.var
+/stepper.var.bak
