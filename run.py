@@ -30,6 +30,7 @@ cetus = args.cetus
 
 launcher.register_exit_handler()
 #launcher.set_debug_level(5)
+os.environ['FLAVOR'] = 'rt-preempt'  # force Machinekit flavor for package installs
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 if not os.path.isfile(configName):
