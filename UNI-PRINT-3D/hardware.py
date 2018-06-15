@@ -17,7 +17,7 @@ def hardware_write():
 
 
 def init_hardware():
-    watchList = []
+    watch_list = []
     i2c_bus_id = 1  # note: was 2 on Jessie/3.8
 
     # load low-level drivers
@@ -37,7 +37,7 @@ def init_hardware():
                 input_pins='A00,A01,A02,A03,A04,A05,A06,A07,B06,B07',
                 output_pins='B00,B01,B02,B03,B04,B05',
                 wait_name='i2c-gpio')
-    watchList.append(['i2c-gpio', 0.1])
+    watch_list.append(['i2c-gpio', 0.1])
 
     # Python user-mode HAL module to interface with an I2C PWM generator
     hal.loadusr('hal_pwm_pca9685',
@@ -47,10 +47,10 @@ def init_hardware():
                 interval=0.1,
                 delay=2.6,
                 wait_name='i2c-pwm')
-    watchList.append(['i2c-pwm', 0.2])
+    watch_list.append(['i2c-pwm', 0.2])
 
     # Python user-mode HAL module to interface with an I2C ADC and convert it to temperature
-    defaultThermistor = 'semitec_103GT_2'
+    default_thermistor = 'semitec_103GT_2'
     hal.loadusr('hal_temp_ads7828',
                 name='i2c-temp',
                 bus_id=i2c_bus_id,
@@ -59,18 +59,18 @@ def init_hardware():
                 delay=2.7,
                 filter_size=1,
                 channels='00:%s,01:%s,02:%s,03:%s,04:%s,05:none,06:none,07:none'
-                % (c.find('HBP', 'THERMISTOR', defaultThermistor),
-                   c.find('EXTRUDER_0', 'THERMISTOR', defaultThermistor),
-                   c.find('EXTRUDER_1', 'THERMISTOR', defaultThermistor),
-                   c.find('EXTRUDER_2', 'THERMISTOR', defaultThermistor),
-                   c.find('EXTRUDER_3', 'THERMISTOR', defaultThermistor)),
+                % (c.find('HBP', 'THERMISTOR', default_thermistor),
+                   c.find('EXTRUDER_0', 'THERMISTOR', default_thermistor),
+                   c.find('EXTRUDER_1', 'THERMISTOR', default_thermistor),
+                   c.find('EXTRUDER_2', 'THERMISTOR', default_thermistor),
+                   c.find('EXTRUDER_3', 'THERMISTOR', default_thermistor)),
                 wait_name='i2c-temp')
-    watchList.append(['i2c-temp', 0.1])
+    watch_list.append(['i2c-temp', 0.1])
 
     base.usrcomp_status('i2c-gpio', 'gpio-hw', thread='servo-thread')
     base.usrcomp_status('i2c-pwm', 'pwm-hw', thread='servo-thread')
     base.usrcomp_status('i2c-temp', 'temp-hw', thread='servo-thread')
-    base.usrcomp_watchdog(watchList, 'estop-reset', thread='servo-thread',
+    base.usrcomp_watchdog(watch_list, 'estop-reset', thread='servo-thread',
                           errorSignal='watchdog-error')
 
 
@@ -156,9 +156,9 @@ def setup_hardware(thread):
     hal.Pin('i2c-temp.ch-02.value').link('e1-temp-meas')
     hal.Pin('i2c-temp.ch-03.value').link('e2-temp-meas')
     hal.Pin('i2c-temp.ch-04.value').link('e3-temp-meas')
-    #hal.Pin('i2c-temp.ch-05.value').link('ain0')
-    #hal.Pin('i2c-temp.ch-06.value').link('ain1')
-    #hal.Pin('i2c-temp.ch-07.value').link('ain2')
+    # hal.Pin('i2c-temp.ch-05.value').link('ain0')
+    # hal.Pin('i2c-temp.ch-06.value').link('ain1')
+    # hal.Pin('i2c-temp.ch-07.value').link('ain2')
 
     # Stepper
     hal.Pin('hpg.stepgen.00.steppin').set(812)  # XStep
@@ -175,10 +175,10 @@ def setup_hardware(thread):
     hal.Pin('hpg.stepgen.05.dirpin').set(808)   # CDir
 
     # charge pump
-    chargePump = rt.newinst('charge_pump', 'charge-pump')
-    hal.addf(chargePump.name, thread)
-    chargePump.pin('out').link('charge-pump-out')
-    chargePump.pin('enable').link('emcmot-0-enable')
+    charge_pump = rt.newinst('charge_pump', 'charge-pump')
+    hal.addf(charge_pump.name, thread)
+    charge_pump.pin('out').link('charge-pump-out')
+    charge_pump.pin('enable').link('emcmot-0-enable')
 
     # charge pump tied to machine power
     hal.Pin('bb_gpio.p8.out-19').link('charge-pump-out')
@@ -198,25 +198,25 @@ def setup_hardware(thread):
 
 
 def setup_hbp_led(thread):
-    tempMeas = hal.Signal('hbp-temp-meas')
-    ledHbpHot = hal.newsig('led-hbp-hot', hal.HAL_BIT)
-    ledHbpInfo = hal.newsig('led-hbp-info', hal.HAL_BIT)
+    temp_meas = hal.Signal('hbp-temp-meas')
+    led_hbp_hot = hal.newsig('led-hbp-hot', hal.HAL_BIT)
+    led_hbp_info = hal.newsig('led-hbp-info', hal.HAL_BIT)
 
     # low temp
     comp = rt.newinst('comp', 'comp.hbp-info')
     hal.addf(comp.name, thread)
-    comp.pin('in0').link(tempMeas)
+    comp.pin('in0').link(temp_meas)
     comp.pin('in1').set(50.0)
     comp.pin('hyst').set(2.0)
-    comp.pin('out').link(ledHbpInfo)
+    comp.pin('out').link(led_hbp_info)
 
     # high temp
     comp = rt.newinst('comp', 'comp.hbp-hot')
     hal.addf(comp.name, thread)
     comp.pin('in0').set(50.0)
-    comp.pin('in1').link(tempMeas)
+    comp.pin('in1').link(temp_meas)
     comp.pin('hyst').set(2.0)
-    comp.pin('out').link(ledHbpHot)
+    comp.pin('out').link(led_hbp_hot)
 
 
 def setup_exp(name):
