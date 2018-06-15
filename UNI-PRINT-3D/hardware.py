@@ -1,3 +1,4 @@
+# coding=utf-8
 from machinekit import hal
 from machinekit import rtapi as rt
 from machinekit import config as c
@@ -23,7 +24,7 @@ def init_hardware():
     rt.loadrt('hal_bb_gpio', output_pins='807,819,826,926', input_pins='941')
     prubin = '%s/%s' % (c.Config().EMC2_RTLIB_DIR, c.find('PRUCONF', 'PRUBIN'))
     rt.loadrt(c.find('PRUCONF', 'DRIVER'),
-              pru=0, num_stepgens=5, num_pwmgens=0,
+              pru=0, num_stepgens=6, num_pwmgens=0,
               prucode=prubin, halname='hpg')
 
     # Python user-mode HAL module to interface with an I2C gpio extender
@@ -170,6 +171,8 @@ def setup_hardware(thread):
     hal.Pin('hpg.stepgen.03.dirpin').set(925)   # ZDir
     hal.Pin('hpg.stepgen.04.steppin').set(911)  # BStep
     hal.Pin('hpg.stepgen.04.dirpin').set(942)   # BDir
+    hal.Pin('hpg.stepgen.05.steppin').set(809)  # CStep
+    hal.Pin('hpg.stepgen.05.dirpin').set(808)   # CDir
 
     # charge pump
     chargePump = rt.newinst('charge_pump', 'charge-pump')

@@ -1,3 +1,4 @@
+# coding=utf-8
 # HAL file for BeagleBone + TCT paralell port cape with 5 steppers and 3D printer board
 import os
 
@@ -45,8 +46,10 @@ base.setup_stepper(section='AXIS_2', axisIndex=2, stepgenIndex=2,
                    thread='servo-thread', gantry=True, gantryJoint=0)
 base.setup_stepper(section='AXIS_2', axisIndex=2, stepgenIndex=3,
                    thread='servo-thread', gantry=True, gantryJoint=1)
-# Extruder, velocity controlled
+# Extruder 0, velocity controlled
 base.setup_stepper(section='EXTRUDER_0', stepgenIndex=4, velocitySignal='ve-extrude-vel')
+# Extruder 1, velocity controlled
+base.setup_stepper(section='EXTRUDER_1', stepgenIndex=5, velocitySignal='ve-extrude-vel')
 
 # workaround for joint following error problem
 # feed pos cmd straight back to the feedback channel
@@ -55,20 +58,11 @@ for i in range(3):
     pin.unlink()
     pin.link('emcmot-%i-pos-cmd' % i)
 
-# Extruder Multiplexer
-base.setup_extruder_multiplexer(extruders=(numExtruders + int(withAbp)), thread='servo-thread')
-# Stepper Multiplexer
-multiplexSections = []
-for i in range(0, numExtruders):
-    multiplexSections.append('EXTRUDER_%i' % i)
+# ABP support
 if withAbp:  # not a very good solution
-    multiplexSections.append('ABP')
-    multiplexSections.append('ABP')  # no this is no mistake, we need an additional section
-    hal.Pin('motion.digital-out-io-20').link('stepgen-4-control-type')
-    hal.net('stepgen-4-pos-cmd', 'motion.analog-out-io-50', 'hpg.stepgen.04.position-cmd')
-    hal.net('stepgen-4-pos-fb', 'motion.analog-in-50', 'hpg.stepgen.04.position-fb')
-base.setup_stepper_multiplexer(stepgenIndex=4, sections=multiplexSections,
-                               selSignal='extruder-sel', thread='servo-thread')
+    hal.Pin('motion.digital-out-io-20').link('stepgen-5-control-type')
+    hal.net('stepgen-5-pos-cmd', 'motion.analog-out-io-50', 'hpg.stepgen.05.position-cmd')
+    hal.net('stepgen-5-pos-fb', 'motion.analog-in-50', 'hpg.stepgen.05.position-fb')
 
 # Fans
 for i in range(0, numFans):
