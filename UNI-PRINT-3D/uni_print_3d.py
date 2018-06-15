@@ -47,9 +47,9 @@ base.setup_stepper(section='AXIS_2', axisIndex=2, stepgenIndex=2,
 base.setup_stepper(section='AXIS_2', axisIndex=2, stepgenIndex=3,
                    thread='servo-thread', gantry=True, gantryJoint=1)
 # Extruder 0, velocity controlled
-base.setup_stepper(section='EXTRUDER_0', stepgenIndex=4, velocitySignal='ve-extrude-vel')
+base.setup_stepper(section='EXTRUDER_0', stepgenIndex=4, velocitySignal='ve-extrude-vel-0')
 # Extruder 1, velocity controlled
-base.setup_stepper(section='EXTRUDER_1', stepgenIndex=5, velocitySignal='ve-extrude-vel')
+base.setup_stepper(section='EXTRUDER_1', stepgenIndex=5, velocitySignal='ve-extrude-vel-1')
 
 # workaround for joint following error problem
 # feed pos cmd straight back to the feedback channel
@@ -57,6 +57,17 @@ for i in range(3):
     pin = hal.Pin('axis.%i.motor-pos-fb' % i)
     pin.unlink()
     pin.link('emcmot-%i-pos-cmd' % i)
+
+# Extruder Multiplexer
+base.setup_extruder_multiplexer(extruders=(numExtruders + int(withAbp)), thread='servo-thread')
+for n in range(numExtruders):
+    mux = rt.newinst('muxn', 'mux-extruder-vel-{}'.format(n), pincount=numExtruders)
+    hal.addf(mux.name, 'servo-thread')
+    for i in range(numExtruders):
+        mux.pin('in{}'.format(i)).set(0.0)
+    mux.pin('in{}'.format(n)).link('ve-extrude-vel')
+    mux.pin('out').link('ve-extrude-vel-{}'.format(n))
+    mux.pin('sel').link('extruder-sel')
 
 # ABP support
 if withAbp:  # not a very good solution
