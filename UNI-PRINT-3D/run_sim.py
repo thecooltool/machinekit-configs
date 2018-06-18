@@ -67,5 +67,3 @@ try:
 except subprocess.CalledProcessError:
     launcher.end_session()
     sys.exit(1)
-
-sys.exit(0)

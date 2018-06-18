@@ -1,3 +1,4 @@
+# coding=utf-8
 import os
 
 from machinekit import hal
@@ -87,12 +88,14 @@ hal.Signal('temp-hw-ok').set(True)
 
 # Extruder Multiplexer
 base.setup_extruder_multiplexer(extruders=numExtruders, thread='servo-thread')
-# Stepper Multiplexer
-multiplexSections = []
-for i in range(0, numExtruders):
-    multiplexSections.append('EXTRUDER_%i' % i)
-base.setup_stepper_multiplexer(stepgenIndex=4, sections=multiplexSections,
-                               selSignal='extruder-sel', thread='servo-thread')
+for n in range(numExtruders):
+    mux = rt.newinst('muxn', 'mux-extruder-vel-{}'.format(n), pincount=numExtruders)
+    hal.addf(mux.name, 'servo-thread')
+    for i in range(numExtruders):
+        mux.pin('in{}'.format(i)).set(0.0)
+    mux.pin('in{}'.format(n)).link('ve-extrude-vel')
+    mux.pin('out').link('ve-extrude-vel-{}'.format(n))
+    mux.pin('sel').link('extruder-sel')
 
 # LEDs
 for i in range(0, numLights):
@@ -101,11 +104,6 @@ for i in range(0, numLights):
 hardware.setup_hbp_led(thread='servo-thread')
 
 # Standard I/O - EStop, Enables, Limit Switches, Etc
-#errorSignals = ['gpio-hw-error', 'pwm-hw-error', 'temp-hw-error',
-#                'watchdog-error', 'hbp-error']
-#for i in range(0, numExtruders):
-#    errorSignals.append('e%i-error' % i)
-#base.setup_estop(errorSignals, thread='servo-thread')
 base.setup_estop_loopback()
 base.setup_tool_loopback()
 # Probe
@@ -120,4 +118,3 @@ storage.read_storage()
 # start haltalk server after everything is initialized
 # else binding the remote components on the UI might fail
 hal.loadusr('haltalk', wait=True)
-
