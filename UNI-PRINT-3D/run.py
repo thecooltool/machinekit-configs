@@ -52,7 +52,7 @@ try:
     launcher.check_installation()
     launcher.cleanup_session()
 
-    launcher.load_bbio_file('paralell_cape2018.bbio')
+    launcher.load_bbio_file('paralell_cape2018_uniprint.bbio')
 
     # launcher.install_comp('thermistor_check.icomp')
     cfg = configparser.ConfigParser({'NAME': ''})
@@ -74,4 +74,3 @@ try:
 except subprocess.CalledProcessError:
     launcher.end_session()
     sys.exit(1)
-
