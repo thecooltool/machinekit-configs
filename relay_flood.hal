@@ -1,0 +1,8 @@
+# ################
+# Relay
+# ################
+newsig relay-on bit
+
+net relay-on <= iocontrol.0.coolant-flood
+net relay-on => charge-pump.enable
+net Relay <= charge-pump.out

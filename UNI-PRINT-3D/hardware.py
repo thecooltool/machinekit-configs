@@ -17,7 +17,6 @@ def hardware_write():
 
 def init_hardware():
     watchList = []
-    i2c_bus_id = 1  # note: was 2 on Jessie/3.8
 
     # load low-level drivers
     rt.loadrt('hal_bb_gpio', output_pins='807,819,826,926', input_pins='941')
@@ -29,7 +28,7 @@ def init_hardware():
     # Python user-mode HAL module to interface with an I2C gpio extender
     hal.loadusr('hal_gpio_mcp23017',
                 name='i2c-gpio',
-                bus_id=i2c_bus_id,
+                bus_id=2,
                 address=32,
                 interval=0.05,
                 delay=2.5,
@@ -41,7 +40,7 @@ def init_hardware():
     # Python user-mode HAL module to interface with an I2C PWM generator
     hal.loadusr('hal_pwm_pca9685',
                 name='i2c-pwm',
-                bus_id=i2c_bus_id,
+                bus_id=2,
                 address=67,
                 interval=0.1,
                 delay=2.6,
@@ -52,7 +51,7 @@ def init_hardware():
     defaultThermistor = 'semitec_103GT_2'
     hal.loadusr('hal_temp_ads7828',
                 name='i2c-temp',
-                bus_id=i2c_bus_id,
+                bus_id=2,
                 address=72,
                 interval=0.05,
                 delay=2.7,
@@ -75,7 +74,7 @@ def init_hardware():
 
 def setup_hardware(thread):
     # PWM
-    hal.Pin('i2c-pwm.frequency').set(1000)  # 1000Hz, keeps EMC radiation low
+    hal.Pin('i2c-pwm.frequency').set(100)  # 100Hz, keeps EMC radiation low
     # HBP
     hal.Pin('i2c-pwm.out-00.enable').set(True)
     hal.Pin('i2c-pwm.out-00.value').link('hbp-temp-pwm')
@@ -172,10 +171,10 @@ def setup_hardware(thread):
     hal.Pin('hpg.stepgen.04.dirpin').set(942)   # BDir
 
     # charge pump
-    chargePump = rt.newinst('charge_pump', 'charge-pump')
-    hal.addf(chargePump.name, thread)
-    chargePump.pin('out').link('charge-pump-out')
-    chargePump.pin('enable').link('emcmot-0-enable')
+    chargePump = rt.loadrt('charge_pump')
+    hal.addf('charge-pump', thread)
+    hal.Pin('charge-pump.out').link('charge-pump-out')
+    hal.Pin('charge-pump.enable').link('emcmot-0-enable')
 
     # charge pump tied to machine power
     hal.Pin('bb_gpio.p8.out-19').link('charge-pump-out')

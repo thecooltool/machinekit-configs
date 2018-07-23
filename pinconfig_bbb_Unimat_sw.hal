@@ -1,0 +1,91 @@
+# ##################################################
+# Pin config
+# ##################################################
+# Invert for mechanical endstops
+net XMin            <= bb_gpio.p9.in-14
+setp                   bb_gpio.p9.in-14.invert TRUE
+net XMax            <= bb_gpio.p9.in-15
+setp                   bb_gpio.p9.in-15.invert TRUE
+net XHome           <= bb_gpio.p9.in-18
+setp                   bb_gpio.p9.in-18.invert TRUE
+net YMin            <= bb_gpio.p8.in-10
+setp                   bb_gpio.p8.in-10.invert TRUE
+net YMax            <= bb_gpio.p8.in-14
+setp                   bb_gpio.p8.in-14.invert TRUE
+net YHome           <= bb_gpio.p8.in-19
+setp                   bb_gpio.p8.in-19.invert TRUE
+net ZMin            <= bb_gpio.p8.in-17
+setp                   bb_gpio.p8.in-17.invert TRUE
+net ZMax            <= bb_gpio.p8.in-18
+setp                   bb_gpio.p8.in-18.invert TRUE
+net ZHome           <= bb_gpio.p9.in-41
+setp                   bb_gpio.p9.in-41.invert TRUE
+net AMin            <= bb_gpio.p9.in-12
+setp                   bb_gpio.p9.in-12.invert TRUE
+net AMax            <= bb_gpio.p9.in-16
+setp                   bb_gpio.p9.in-16.invert TRUE
+net AHome           <= bb_gpio.p8.in-07
+setp                   bb_gpio.p8.in-07.invert TRUE
+net BHome           <= bb_gpio.p9.in-24
+setp                   bb_gpio.p9.in-24.invert TRUE
+net Spindle_Dir     => bb_gpio.p9.out-23
+net Relay           => bb_gpio.p9.out-26
+net Axes_Enable     => bb_gpio.p9.out-30
+setp                   bb_gpio.p9.out-30.invert TRUE
+net Estop_Ext       <= bb_gpio.p9.in-17
+setp                   bb_gpio.p9.in-17.invert TRUE
+net Status_LED      => bb_gpio.p8.out-26
+setp                   bb_gpio.p8.out-26.invert TRUE
+net Buzzer          => bb_gpio.p8.out-27
+
+# HAL pins
+#sets XStep      P8.12
+setp hpg.stepgen.00.steppin 812
+#sets XDir       P8.11
+setp hpg.stepgen.00.dirpin 811
+#sets YStep      P8.16
+setp hpg.stepgen.01.steppin 816
+#sets YDir       P8.15
+setp hpg.stepgen.01.dirpin 815
+#sets ZStep      P9.13
+setp hpg.stepgen.02.steppin 913
+#sets ZDir       P9.25
+setp hpg.stepgen.02.dirpin 925
+#sets AStep      P9.22
+setp hpg.stepgen.03.steppin 922
+#sets ADir       P9.21
+setp hpg.stepgen.03.dirpin 921
+#sets BStep      P9.11
+setp hpg.stepgen.04.steppin 911
+#sets BDir       P9.42
+setp hpg.stepgen.04.dirpin 942
+#sets CStep      P8.09
+setp hpg.stepgen.05.steppin 809
+#sets CDir       P8.08
+setp hpg.stepgen.05.dirpin 808
+#sets Spindle    P8.13
+setp hpg.pwmgen.00.out.00.pin 813
+
+# ##################################################
+# Standard I/O - EStop, Enables, Limit Switches, Etc
+# ##################################################
+
+# Create estop signal chain
+# Uncomment to monitor estop input from hardware
+# Estop input is used for probe too -> disable first
+#net Estop_Ext => iocontrol.0.emc-enable-in
+net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
+
+# create signals for tool loading loopback
+net tool-prep-loop iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
+net tool-change-loop iocontrol.0.tool-change => iocontrol.0.tool-changed
+
+# Axis enable signal
+net Axes_Enable <= or2.axis-enable.out
+
+# Tie machine power signal to the Parport Cape LED
+# Feel free to tie any other signal you like to the LED
+net Status_LED <= or2.status-led.out
+
+# limit switch debounce delay
+setp debounce.0.delay 2 # 2ms

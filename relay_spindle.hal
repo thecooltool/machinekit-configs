@@ -1,0 +1,5 @@
+# ################
+# Relay
+# ################
+net spindle-on => charge-pump.enable
+net Relay <= charge-pump.out

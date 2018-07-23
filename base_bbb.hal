@@ -1,0 +1,76 @@
+# set logging to 'pretty high'
+log rt 5
+log user 5
+
+# ###################################
+# Signals
+# ###################################
+#newsig XStep    u32
+#newsig XDir     u32
+#newsig YStep    u32
+#newsig YDir     u32
+#newsig ZStep    u32
+#newsig ZDir     u32
+#newsig AStep    u32
+#newsig ADir     u32
+#newsig BStep    u32
+#newsig BDir     u32
+#newsig CStep    u32
+#newsig CDir     u32
+#newsig Spindle  u32
+
+newsig XMin         bit
+newsig XMax         bit
+newsig XHome        bit
+newsig YMin         bit
+newsig YMax         bit
+newsig YHome        bit
+newsig ZMin         bit
+newsig ZMax         bit
+newsig ZHome        bit
+newsig AMin         bit
+newsig AMax         bit
+newsig AHome        bit
+newsig BHome        bit
+newsig Spindle_Dir  bit
+newsig Relay        bit
+newsig Axes_Enable  bit
+newsig Estop_Ext    bit
+newsig Status_LED   bit
+newsig Buzzer       bit
+
+# ###################################
+# Core EMC/HAL Loads
+# ###################################
+
+# kinematics
+loadrt trivkins
+loadrt tp
+
+# motion controller, get name and thread periods from ini file
+loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[TRAJ]AXES num_dio=1 kins=trivkins
+# load low-level drivers
+loadrt hal_bb_gpio output_pins=826,827,923,926,930 input_pins=807,810,814,817,818,819,912,914,915,916,917,918,924,941
+loadrt [PRUCONF](DRIVER) prucode=$(HAL_RTMOD_DIR)/[PRUCONF](PRUBIN) [PRUCONF](CONFIG) halname=hpg
+loadrt limit1 names=limit1.spindle-speed
+loadrt or2 names=or2.axis-enable,or2.status-led
+loadrt scale names=scale.spindle-speed
+newinst debounce debounce.0 pincount=13
+loadrt charge_pump
+
+# ################################################
+# THREADS
+# ################################################
+addf hpg.capture-position                 servo-thread
+addf bb_gpio.read                         servo-thread
+addf debounce.0                           servo-thread
+addf motion-command-handler               servo-thread
+addf motion-controller                    servo-thread
+addf scale.spindle-speed                  servo-thread
+addf limit1.spindle-speed                 servo-thread
+addf or2.axis-enable                      servo-thread
+addf or2.status-led                       servo-thread
+addf charge-pump                          servo-thread
+addf hpg.update                           servo-thread
+addf bb_gpio.write                        servo-thread
+

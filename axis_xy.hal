@@ -14,10 +14,8 @@ net emcmot.00.enable => or2.status-led.in1
 net emcmot.00.pos-cmd <= axis.0.motor-pos-cmd
 net emcmot.00.pos-cmd => hpg.stepgen.00.position-cmd
 
-# Workaround for joint following error
-#net motor.00.pos-fb <= hpg.stepgen.00.position-fb
-#net motor.00.pos-fb => axis.0.motor-pos-fb
-net emcmot.00.pos-cmd => axis.0.motor-pos-fb
+net motor.00.pos-fb <= hpg.stepgen.00.position-fb
+net motor.00.pos-fb => axis.0.motor-pos-fb
 
 # timing parameters
 setp hpg.stepgen.00.dirsetup        [AXIS_0]DIRSETUP
@@ -30,9 +28,10 @@ setp hpg.stepgen.00.position-scale  [AXIS_0]SCALE
 
 setp hpg.stepgen.00.maxvel          [AXIS_0]STEPGEN_MAX_VEL
 setp hpg.stepgen.00.maxaccel        [AXIS_0]STEPGEN_MAX_ACC
-setp hpg.stepgen.00.minvel          [AXIS_0]STEPGEN_MIN_VEL
 
-# Note: steppers connected in pinconfig file
+#net XStep => hpg.stepgen.00.steppin
+#net XDir => hpg.stepgen.00.dirpin
+
 
 # ################
 # Y [1] Axis
@@ -48,10 +47,8 @@ net emcmot.01.enable => hpg.stepgen.01.enable
 net emcmot.01.pos-cmd <= axis.1.motor-pos-cmd
 net emcmot.01.pos-cmd => hpg.stepgen.01.position-cmd
 
-# Workaround for joint following error
-#net motor.01.pos-fb <= hpg.stepgen.01.position-fb
-#net motor.01.pos-fb => axis.1.motor-pos-fb
-net emcmot.01.pos-cmd => axis.1.motor-pos-fb
+net motor.01.pos-fb <= hpg.stepgen.01.position-fb
+net motor.01.pos-fb => axis.1.motor-pos-fb
 
 # timing parameters
 setp hpg.stepgen.01.dirsetup        [AXIS_1]DIRSETUP
@@ -64,6 +61,6 @@ setp hpg.stepgen.01.position-scale  [AXIS_1]SCALE
 
 setp hpg.stepgen.01.maxvel          [AXIS_1]STEPGEN_MAX_VEL
 setp hpg.stepgen.01.maxaccel        [AXIS_1]STEPGEN_MAX_ACC
-setp hpg.stepgen.01.minvel          [AXIS_1]STEPGEN_MIN_VEL
 
-# Note: steppers connected in pinconfig file
+#net YStep => hpg.stepgen.01.steppin
+#net YDir => hpg.stepgen.01.dirpin

@@ -12,10 +12,8 @@ net emcmot.02.enable => hpg.stepgen.02.enable
 net emcmot.02.pos-cmd <= axis.2.motor-pos-cmd
 net emcmot.02.pos-cmd => hpg.stepgen.02.position-cmd
 
-# Workaround for joint following error
-#net motor.02.pos-fb <= hpg.stepgen.02.position-fb
-#net motor.02.pos-fb => axis.2.motor-pos-fb
-net emcmot.02.pos-cmd => axis.2.motor-pos-fb
+net motor.02.pos-fb <= hpg.stepgen.02.position-fb
+net motor.02.pos-fb => axis.2.motor-pos-fb
 
 # timing parameters
 setp hpg.stepgen.02.dirsetup        [AXIS_2]DIRSETUP
@@ -28,6 +26,6 @@ setp hpg.stepgen.02.position-scale  [AXIS_2]SCALE
 
 setp hpg.stepgen.02.maxvel          [AXIS_2]STEPGEN_MAX_VEL
 setp hpg.stepgen.02.maxaccel        [AXIS_2]STEPGEN_MAX_ACC
-setp hpg.stepgen.02.minvel          [AXIS_2]STEPGEN_MIN_VEL
 
-# Note: steppers connected in pinconfig file
+#net ZStep => hpg.stepgen.02.steppin
+#net ZDir => hpg.stepgen.02.dirpin

@@ -30,6 +30,7 @@ cetus = args.cetus
 
 launcher.register_exit_handler()
 #launcher.set_debug_level(5)
+os.environ['FLAVOR'] = 'rt-preempt'  # force Machinekit flavor for package installs
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 if not os.path.isfile(configName):
@@ -43,10 +44,8 @@ sourceIni.close()
 if mtEnabled:
     lines = lines[:-3]  # remove intro graphic
     lines.append('DISPLAY = mkwrapper\n')
-    lines.append('CYCLE_TIME = 0.100\n')
 else:
     lines.append('DISPLAY = axis\n')
-    lines.append('CYCLE_TIME = 0.200\n')
 startupIni = open(startupIniName, 'w')
 startupIni.writelines(lines)  # copy file contents
 startupIni.close()
@@ -58,7 +57,7 @@ try:
     if robotEnabled:  # consider the special robot case
         launcher.load_bbio_file('paralell_cape2_robot.bbio')
     else:
-        launcher.load_bbio_file('paralell_cape2018.bbio')
+        launcher.load_bbio_file('paralell_cape2.bbio')
 
     if mtEnabled:  # load Machinetalk services
         cfg = configparser.ConfigParser({'NAME': ''})
@@ -77,7 +76,7 @@ try:
         if os.path.exists('/dev/video0'):  # automatically start videoserver
             launcher.start_process('videoserver -i video.ini Webcam1')
 
-    launcher.start_process('machinekit ' + startupIniName)
+    launcher.start_process('linuxcnc ' + startupIniName)
     while True:
         launcher.check_processes()
         sleep(1)
