@@ -57,9 +57,10 @@ loadrt [PRUCONF](DRIVER) prucode=$(HAL_RTMOD_DIR)/[PRUCONF](PRUBIN) [PRUCONF](CO
 loadrt limit1 names=limit1.spindle-speed
 loadrt or2 names=or2.axis-enable,or2.status-led
 loadrt scale names=scale.spindle-speed
-newinst debounce debounce.0 pincount=13
+newinst debounce debounce.0 pincount=14
 newinst charge_pump charge-pump 
 newinst charge_pumpv2 charge-pumpv2
+newinst lgantry gantry.0 pincount=2
 
 
 # ################################################
@@ -67,6 +68,7 @@ newinst charge_pumpv2 charge-pumpv2
 # ################################################
 addf hpg.capture-position                 servo-thread
 addf bb_gpio.read                         servo-thread
+addf gantry.0.read                        servo-thread
 addf debounce.0                           servo-thread
 addf motion-command-handler               servo-thread
 addf motion-controller                    servo-thread
@@ -76,6 +78,7 @@ addf or2.axis-enable                      servo-thread
 addf or2.status-led                       servo-thread
 addf charge-pump                          servo-thread
 addf charge-pumpv2                        servo-thread
+addf gantry.0.write                       servo-thread
 addf hpg.update                           servo-thread
 addf bb_gpio.write                        servo-thread
 
