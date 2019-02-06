@@ -1,0 +1,73 @@
+# ################
+# Gantry
+# ################
+# position command and feedback
+net emcmot.00.pos-cmd <= axis.0.motor-pos-cmd
+net emcmot.00.pos-cmd => gantry.0.position-cmd
+
+# Workaround for joint following error
+net emcmot.00.pos-fb <= gantry.0.position-fb
+#net emcmot.00.pos-fb => axis.0.motor-pos-fb
+net emcmot.00.pos-cmd => axis.0.motor-pos-fb
+
+# ################
+# X1 [0] Axis
+# ################
+
+# axis enable chain
+newsig emcmot.00.enable bit
+
+net emcmot.00.enable <= axis.0.amp-enable-out
+net emcmot.00.enable => hpg.stepgen.00.enable
+net emcmot.00.enable => or2.axis-enable.in1
+net emcmot.00.enable => or2.status-led.in1
+
+# position command and feedback
+net emcmot.00.0.pos-cmd <= gantry.0.joint.00.pos-cmd
+net emcmot.00.0.pos-cmd => hpg.stepgen.00.position-cmd
+
+net emcmot.00.0.pos-fb <= hpg.stepgen.00.position-fb
+net emcmot.00.0.pos-fb => gantry.0.joint.00.pos-fb
+
+# timing parameters
+setp hpg.stepgen.00.dirsetup        [AXIS_0]DIRSETUP
+setp hpg.stepgen.00.dirhold         [AXIS_0]DIRHOLD
+
+setp hpg.stepgen.00.steplen         [AXIS_0]STEPLEN
+setp hpg.stepgen.00.stepspace       [AXIS_0]STEPSPACE
+
+setp hpg.stepgen.00.position-scale  [AXIS_0]SCALE
+
+setp hpg.stepgen.00.maxvel          [AXIS_0]STEPGEN_MAX_VEL
+setp hpg.stepgen.00.maxaccel        [AXIS_0]STEPGEN_MAX_ACC
+setp hpg.stepgen.00.minvel          [AXIS_0]STEPGEN_MIN_VEL
+
+# Note: steppers connected in pinconfig file
+
+# ################
+# X2 [0] Axis
+# ################
+
+# axis enable chain
+net emcmot.00.enable => hpg.stepgen.05.enable
+
+net emcmot.00.1.pos-cmd <= gantry.0.joint.01.pos-cmd
+net emcmot.00.1.pos-cmd => hpg.stepgen.05.position-cmd
+
+net emcmot.00.1.pos-fb <= hpg.stepgen.05.position-fb
+net emcmot.00.1.pos-fb => gantry.0.joint.01.pos-fb
+
+# timing parameters
+setp hpg.stepgen.05.dirsetup        [AXIS_0]DIRSETUP
+setp hpg.stepgen.05.dirhold         [AXIS_0]DIRHOLD
+
+setp hpg.stepgen.05.steplen         [AXIS_0]STEPLEN
+setp hpg.stepgen.05.stepspace       [AXIS_0]STEPSPACE
+
+setp hpg.stepgen.05.position-scale  [AXIS_0]SCALE
+
+setp hpg.stepgen.05.maxvel          [AXIS_0]STEPGEN_MAX_VEL
+setp hpg.stepgen.05.maxaccel        [AXIS_0]STEPGEN_MAX_ACC
+setp hpg.stepgen.05.minvel          [AXIS_0]STEPGEN_MIN_VEL
+
+# Note: steppers connected in pinconfig file

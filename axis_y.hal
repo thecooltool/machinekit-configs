@@ -1,0 +1,33 @@
+# ################
+# Y [1] Axis
+# ################
+
+# axis enable chain
+newsig emcmot.01.enable bit
+
+net emcmot.01.enable <= axis.1.amp-enable-out
+net emcmot.01.enable => hpg.stepgen.01.enable
+
+# position command and feedback
+net emcmot.01.pos-cmd <= axis.1.motor-pos-cmd
+net emcmot.01.pos-cmd => hpg.stepgen.01.position-cmd
+
+# Workaround for joint following error
+#net motor.01.pos-fb <= hpg.stepgen.01.position-fb
+#net motor.01.pos-fb => axis.1.motor-pos-fb
+net emcmot.01.pos-cmd => axis.1.motor-pos-fb
+
+# timing parameters
+setp hpg.stepgen.01.dirsetup        [AXIS_1]DIRSETUP
+setp hpg.stepgen.01.dirhold         [AXIS_1]DIRHOLD
+
+setp hpg.stepgen.01.steplen         [AXIS_1]STEPLEN
+setp hpg.stepgen.01.stepspace       [AXIS_1]STEPSPACE
+
+setp hpg.stepgen.01.position-scale  [AXIS_1]SCALE
+
+setp hpg.stepgen.01.maxvel          [AXIS_1]STEPGEN_MAX_VEL
+setp hpg.stepgen.01.maxaccel        [AXIS_1]STEPGEN_MAX_ACC
+setp hpg.stepgen.01.minvel          [AXIS_1]STEPGEN_MIN_VEL
+
+# Note: steppers connected in pinconfig file
