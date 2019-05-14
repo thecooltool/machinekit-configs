@@ -1,0 +1,9 @@
+newcomp gantry-config timer=100
+newpin gantry-config gantry-config.offset-left float io
+newpin gantry-config gantry-config.offset-right float io
+ready gantry-config
+
+net home-offset-0-0 <= gantry-config.offset-left
+net home-offset-0-1 => gantry-config.offset-right
+
+loadusr -W haltalk
