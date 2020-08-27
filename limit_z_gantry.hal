@@ -1,0 +1,15 @@
+
+setp gantry.0.search-vel [AXIS_2]HOME_SEARCH_VEL
+
+net emcmot.2.home <= gantry.0.home
+net emcmot.2.home => axis.2.home-sw-in
+net emcmot.2.homing <= axis.2.homing
+net emcmot.2.homing => gantry.0.homing
+
+net ZHome           => debounce.0.10.in
+net ZHome.debounced <= debounce.0.10.out
+net ZHome.debounced => gantry.0.joint.00.home
+
+net AHome           => debounce.0.11.in
+net AHome.debounced <= debounce.0.11.out
+net AHome.debounced => gantry.0.joint.01.home

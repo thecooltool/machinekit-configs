@@ -1,0 +1,12 @@
+# #######################
+# HAL storage for Gantry
+# #######################
+
+loadusr -Wn storage hal_storage --name=storage --file=gantry-storage-Z.ini --autosave
+
+net home-offset-2-0 <= storage.gantry.home-offset-2-0
+net home-offset-2-0 => gantry.0.joint.00.home-offset
+net home-offset-2-1 <= storage.gantry.home-offset-2-1
+net home-offset-2-1 => gantry.0.joint.01.home-offset
+
+setp storage.read-trigger 1
