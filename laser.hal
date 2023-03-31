@@ -1,0 +1,23 @@
+# ################
+# Laser related settings
+# ################
+
+# sum2 - for adjusting the negative way of specifying spindle speed/laser power
+loadrt sum2 names=sum2.laser_power
+
+#make it update
+addf sum2.laser_power 			servo-thread
+
+# input 1 = 1 (max value, means laser is off)
+setp sum2.laser_power.in1 1
+setp sum2.laser_power.gain1 0 
+setp sum2.laser_power.gain0 0.01 #we scale the spindle speed with this value. Negative because we decrease from 1 (0 power) to 0.4 (max power = M3 S6000)
+
+# connect the spindle speed (absolute value, so we don't care if M3/M4) to in0 - which gets scaled by dividing it with 10000
+net spindle_speed motion.spindle-speed-out-abs sum2.laser_power.in0
+
+net laser_power sum2.laser_power.out hpg.pwmgen.00.out.00.value
+
+# always enable pwmgen. laser is off only if signal is 1, so we enable pwmgen, and drive it with value 1 if no laser is desired
+setp hpg.pwmgen.00.out.00.enable TRUE
+

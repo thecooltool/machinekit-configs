@@ -1,0 +1,11 @@
+# ################
+# Machine-is-on
+# ################
+newsig machine-is-on bit
+
+# net machine-is-on-on <= iocontrol.0.coolant-mist
+# net machine-is-on <= iocontrol.0.user-enable-out
+net machine-is-on <= axis.5.amp-enable-out
+net machine-is-on => charge-pump.enable
+net Machine-is-on <= charge-pump.out
+
