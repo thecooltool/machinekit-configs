@@ -54,13 +54,13 @@ setp hpg.stepgen.01.steppin 816
 #sets YDir       P8.15
 setp hpg.stepgen.01.dirpin 815
 #sets ZStep      P9.13
-setp hpg.stepgen.02.steppin 922
+setp hpg.stepgen.02.steppin 913
 #sets ZDir       P9.25
-setp hpg.stepgen.02.dirpin 921
+setp hpg.stepgen.02.dirpin 925
 #sets AStep      P9.22
-setp hpg.stepgen.03.steppin 913
+setp hpg.stepgen.03.steppin 922
 #sets ADir       P9.21
-setp hpg.stepgen.03.dirpin 925
+setp hpg.stepgen.03.dirpin 921
 #sets BStep      P9.11
 setp hpg.stepgen.04.steppin 911
 #sets BDir       P9.42
